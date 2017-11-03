@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import userContext from '../../../modules/userContext';
 
 const {getUserContext} = userContext.selectors;
 
 class HomeContainer extends Component {
-  componentDidMount() {
-    this.props.login('ryanvice', 'fooBar');
-  }
-
   render() {
     return (
       <h1>Hi { this.props.userContext.displayName }</h1>
@@ -16,8 +13,8 @@ class HomeContainer extends Component {
   }
 }
 
-App.propTypes = {
-  login: PropTypes.func.isRequired
+HomeContainer.propTypes = {
+  userContext: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = {

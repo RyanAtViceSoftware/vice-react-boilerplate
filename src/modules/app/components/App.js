@@ -1,13 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import logo from './logo.svg';
-import './App.css';
 import userContext from '../../userContext';
-import busyIndicator from '../../busyIndicator';
 import PropTypes from 'prop-types';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom'
+import home from '../../../screens/home';
+import login from '../../../screens/login';
+import busyIndicator from '../../busyIndicator';
 
 const {getUserContext} = userContext.selectors;
 const {BusyIndicator} = busyIndicator.components;
+const {Home} = home.components;
+const {Login} = login.components;
+const {isBusy} = busyIndicator.selectors;
 
 class App extends Component {
   componentDidMount() {
@@ -16,17 +24,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <div className="App-intro">
-          <BusyIndicator>
-            <h1>Hi { this.props.userContext.displayName }</h1>
-          </BusyIndicator>
+      <Router>
+        <div>
+          <header>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/sign-in">Sign In</Link></li>
+            </ul>
+          </header>
+          <div className="App-intro">
+            { this.props.isBusy ? <BusyIndicator/> :
+              <div>
+                <Route exact path="/" component={Home}/>
+                <Route path="/sign-in" component={Login}/>
+              </div>
+            }
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
@@ -41,6 +56,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({
   userContext: getUserContext(state),
+  isBusy: isBusy(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
