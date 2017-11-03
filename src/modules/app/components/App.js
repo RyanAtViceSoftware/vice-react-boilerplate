@@ -23,7 +23,7 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <BusyIndicator>
-            {this.props.children}
+            <h1>Hi { this.props.userContext.displayName }</h1>
           </BusyIndicator>
         </div>
       </div>

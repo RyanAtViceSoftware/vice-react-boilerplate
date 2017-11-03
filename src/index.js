@@ -7,7 +7,7 @@ import './index.css';
 import app from './modules/app';
 import rootReducer from './rootReducer';
 import registerServiceWorker from './registerServiceWorker';
-import { Router, Route, browserHistory } from 'react-router'
+// import { Router, Route, browserHistory } from 'react-router';
 
 const composeEnhancers =
   typeof window === 'object' &&
