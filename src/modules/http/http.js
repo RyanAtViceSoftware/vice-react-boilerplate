@@ -4,8 +4,12 @@ export default {
 
 const ASYNC_DELAY = 1000;
 
-
-function get({url, body, stubSuccess, stubError} = {}) {
+// If stubSuccess or stubError is defined then we will fake a successful call to the
+// server and return stubSuccess as the response. This allows for easily
+// faking calls during development when APIs aren't ready. A warning
+// will be written out for each stubbed response to help prevent forgetting
+// about the stubs.
+function get(url, body, { stubSuccess, stubError } = {}) {
   if (!url) {
     throw new Error('You must specify a url');
   }
@@ -31,7 +35,7 @@ function get({url, body, stubSuccess, stubError} = {}) {
       setTimeout(
         () => {
           console.warn(`Stubbed service error was returned from url: ${url}`);
-          reject(new Error(stubError));
+          reject(stubError);
         },
         ASYNC_DELAY
       )
