@@ -7,13 +7,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Concepts and Patterns
 This is a boostrap that current demonstrates the concepts below. More details on these concepts coming soon.
-- [Recommended folder structure](#recommended-folder-structure)
-- [Recommened async pattern](#recommened-async-pattern)
+- [Recommended Folder Structure](#recommended-folder-structure)
+- [Recommened Async Pattern](#recommened-async-pattern)
   - includes busy indicator
-- forms with redux forms
-- recommended auth (haven't done authz yet)
+  - includes support for stubbing sever responses (success and error) so that it's easy to build out features ahead of API code on the server
+- Forms with [Redux Forms](https://redux-form.com/)
+- Recommended auth (haven't done authz yet)
   - includes restriced routes and redirect flow
-- react router 4
+- [React Router 4](https://reacttraining.com/react-router/)
 
 ### Recommended Folder Structure
 We are following an approach here heavily inspired by [Jack Hsu's recommended approach](https://jaysoo.ca/2016/02/28/organizing-redux-application/).
@@ -49,6 +50,13 @@ There is one exception. We are also following [Flux Standard Actions](https://gi
 ```
 { type: 'FETCH_POSTS_SUCCESS', payload: { ... } }
 ```
+
+## What the App Does
+- It has a few routes that you can navigate two
+- If you try and go to the "Protected" route and you haven't logged in you will be redirected to the Sign In page
+- After signing in you will be redirected back to the "Protected" page
+- If you enter an invalid password or an invalid user name, you will be shown an error panel. When navigating away from the sign in page the error pane will automatically be closed.
+- When you make an asynchronous call to the server by signing in, there will be a busy indicator shown automatically while the data is being fetched.
 
 ## To Do
 - update readme
