@@ -1,3 +1,10 @@
+## Table of Contents
+- [Installation and Running](#installation-and-running)
+- [Concepts and Patterns](#concepts-and-patterns)
+- [What the App Does](#what-the-app-does)
+- [Recommended Learning Resources](#recommended-learning-resources)
+- [To Do](#to-do)
+
 ## Installation and Running
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). See their page for information on how to perform common tasks including installation and running instructions. You can find the most recent version of their user guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
@@ -25,7 +32,7 @@ This is a boostrap that current demonstrates the concepts below. More details on
   - includes restriced routes and redirect flow
 - [React Router 4](https://reacttraining.com/react-router/)
 
-## Recommended State Access Pattern - Selectors
+### Recommended State Access Pattern - Selectors
 We recommend **only accessing state from selectors** and not directly in components. 
 
 **Good**
@@ -92,6 +99,12 @@ There is one exception. We are also following [Flux Standard Actions](https://gi
 - After signing in you will be redirected back to the "Protected" page
 - If you enter an invalid password or an invalid user name, you will be shown an error panel. When navigating away from the sign in page the error pane will automatically be closed.
 - When you make an asynchronous call to the server by signing in, there will be a busy indicator shown automatically while the data is being fetched.
+
+## Recommended Learning Resources
+If you are new to react or redux and want to get up to speed then we recommend these resources.
+1. Learn React and Flux basics: https://www.pluralsight.com/courses/react-flux-building-applications
+2. Learn Redux and ES6 basics: https://www.pluralsight.com/courses/react-redux-react-router-es6
+3. Learn Advanced Redux: https://egghead.io/courses/building-react-applications-with-idiomatic-redux
 
 ## To Do
 - Provide proptype warnings
