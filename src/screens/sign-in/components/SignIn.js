@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom';
-import { FORM_NAME } from '../sign-in.constants';
+import { FORM_NAME } from '../signIn.constants';
 
 const SignIn = props => {
   const { handleSubmit, pristine, submitting, isAuthenticated, from } = props;

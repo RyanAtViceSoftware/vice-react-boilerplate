@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import userContext from '../../userContext';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import { OnUpdate } from 'rrc';
 import home from '../../../screens/home';
 import signin from '../../../screens/sign-in';
@@ -19,10 +20,10 @@ const { Error } = error.components;
 
 class App extends Component {
   render() {
-    const { isBusy } = this.props;
+    const { isBusy, history } = this.props;
 
     return (
-      <Router>
+      <ConnectedRouter history={history}>
         <div>
           <header>
             <ul>
@@ -51,7 +52,7 @@ class App extends Component {
             )}
           </div>
         </div>
-      </Router>
+      </ConnectedRouter>
     );
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import userContext from '../../../modules/userContext';
 import SignIn from './SignIn';
-import { getSignInFormValues } from '../sign-in.selectors';
+import { getSignInFormValues } from '../signIn.selectors';
 
 const { isAuthenticated } = userContext.selectors;
 

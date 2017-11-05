@@ -31,6 +31,7 @@ This is a boostrap that current demonstrates the concepts below. More details on
 - Recommended auth (haven't done authz yet)
   - includes restriced routes and redirect flow
 - [React Router 4](https://reacttraining.com/react-router/)
+  - React Router Redux Integration (The React Router folks recommend against this but we recommend this for better testing and debugging)
 
 ### Recommended State Access Pattern - Selectors
 We recommend **only accessing state from selectors** and not directly in components. 

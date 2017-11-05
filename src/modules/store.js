@@ -3,11 +3,13 @@ import {
   applyMiddleware,
   compose
 } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 let store;
 
-export const createStore = (rootReducer, initialState) => {
+export const createStore = (rootReducer, history, initialState) => {
+  const routerMiddlewareWithHistory = routerMiddleware(history);
   const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -15,7 +17,7 @@ export const createStore = (rootReducer, initialState) => {
         })
       : compose;
 
-  const middleware = [thunk];
+  const middleware = [routerMiddlewareWithHistory, thunk];
 
   if (process.env.NODE_ENV !== 'production') {
     middleware.push(require('redux-immutable-state-invariant').default());
