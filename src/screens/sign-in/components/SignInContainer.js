@@ -23,21 +23,21 @@ class LoginContainer extends React.Component {
 
     return (
       <SignIn
-        onSubmit={ this.handleSubmit }
-        isAuthenticated={ isAuthenticated }
-        from={ from }
+        onSubmit={this.handleSubmit}
+        isAuthenticated={isAuthenticated}
+        from={from}
       />
     );
   }
 }
 
-const mapDispatchToProps = ({
-  ...userContext.actions,
-});
+const mapDispatchToProps = {
+  ...userContext.actions
+};
 
 const mapStateToProps = state => ({
   signInFormValues: getSignInFormValues(state),
-  isAuthenticated: isAuthenticated(state),
+  isAuthenticated: isAuthenticated(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

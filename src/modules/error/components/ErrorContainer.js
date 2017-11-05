@@ -4,18 +4,18 @@ import _ from 'lodash';
 import './error.css';
 import { getErrorMessage } from '../error.selectors';
 
-const ErrorContainer = ({errorMessage}) => (
+const ErrorContainer = ({ errorMessage }) => (
   <div>
-    { !_.isEmpty(errorMessage) &&
+    {!_.isEmpty(errorMessage) && (
       <div className="errorBox">
         <p>{errorMessage}</p>
       </div>
-    }
+    )}
   </div>
 );
 
 const mapStateToProps = state => ({
-  errorMessage: getErrorMessage(state),
+  errorMessage: getErrorMessage(state)
 });
 
 export default connect(mapStateToProps)(ErrorContainer);

@@ -7,5 +7,5 @@ export default {
   actions,
   constants,
   reducer,
-  selectors,
-}
+  selectors
+};
