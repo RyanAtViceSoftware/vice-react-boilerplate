@@ -79,6 +79,13 @@ Some key difference to what Jack recommends are below.
 1. We are naming files `<featureName>.<componentType>.js` instead of `<componentType>.js`. Example `foo.actions.js` instead of `actions.js`. We are doing this because it makes searching the code base for files easier.
 2. We are following [Container\Presentational pattern](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) and we are naming our container components `<FeatureName>Container.js`. Example `FooContainer.js`. However, in our `foo/components/index.js` file we are exporting the container components without the `Container` suffix as this is an internal implementation detail of the feature and we don't want all our markup to have `<FooContainer/>` and `<BarContainer/>` as most components will be containers and it will create noise in our [DSL](https://en.wikipedia.org/wiki/Domain-specific_language). 
 
+#### Top Down Organization
+```
+- src // all JS app code including tests, note node_modules is not under here
+--modules // contains each feature module of the application, some have UI components and some don't
+--screens // contains each of the screens in the app
+```
+
 ### Recommened Async Pattern
 We are following the recommendation that is straight out the [redux documentation here](http://redux.js.org/docs/advanced/AsyncActions.html) where we create "tripples" of actions for each asynchrounous action creator as shown below.
 
