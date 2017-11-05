@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Scripts
 We support the standard [Create React App scripts](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts) as well as the additional ones shown below.
 
-### `npm pretty`
+### `npm run pretty`
 Will use [Prettier](https://github.com/prettier/prettier) to reformat code to standard format used by this repo. **Note that you will want to [configure your editor to use prettier](https://github.com/prettier/prettier#editor-integration)**.
 
 
