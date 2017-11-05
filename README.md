@@ -5,6 +5,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 1. `npm install`
 2. `npm start`
 
+### Scripts
+We support the standard [Create React App scripts](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts) as well as the additional ones shown below.
+
+### `npm pretty`
+Will use [Prettier](https://github.com/prettier/prettier) to reformat code to standard format used by this repo. **Note that you will want to [configure your editor to use prettier](https://github.com/prettier/prettier#editor-integration)**.
+
+
+
 ## Concepts and Patterns
 This is a boostrap that current demonstrates the concepts below. More details on these concepts coming soon.
 - [Recommended Folder Structure](#recommended-folder-structure)
