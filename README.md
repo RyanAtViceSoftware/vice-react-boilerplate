@@ -8,16 +8,47 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Concepts and Patterns
 This is a boostrap that current demonstrates the concepts below. More details on these concepts coming soon.
 - [Recommended folder structure](#recommended-folder-structure)
-- recommended folder structure
-- recommened async pattern
+- [Recommened async pattern](#recommened-async-pattern)
   - includes busy indicator
 - forms with redux forms
 - recommended auth (haven't done authz yet)
   - includes restriced routes and redirect flow
 - react router 4
 
-### Recommended folder structure
-Hi
+### Recommended Folder Structure
+We are following an approach here heavily inspired by [Jack Hsu's recommended approach](https://jaysoo.ca/2016/02/28/organizing-redux-application/).
+
+The basic idea is to treat each feature of the application like it's own node module with an `index.js` file that defines it's public interface. Each module could implement the standard interface shown below.
+
+```javascript
+// foo/index.js
+import * as actions from './actions';
+import * as components from './components';
+import * as constants from './constants';
+import reducer from './reducer';
+import * as selectors from './selectors';
+
+export default { actions, components, constants, reducer, selectors };
+```
+
+Some key difference to what Jack recommends are below.
+1. We are naming files `<featureName>.<componentType>.js` instead of `<componentType>.js`. Example `foo.actions.js` instead of `actions.js`. We are doing this because it makes searching the code base for files easier.
+2. We are following [Container\Presentational pattern](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) and we are naming our container components `<FeatureName>Container.js`. Example `FooContainer.js`. However, in our `foo/components/index.js` file we are exporting the container components without the `Container` suffix as this is an internal implementation detail of the feature and we don't want all our markup to have `<FooContainer/>` and `<BarContainer/>` as most components will be containers and it will create noise in our [DSL](https://en.wikipedia.org/wiki/Domain-specific_language). 
+
+## Recommened Async Pattern
+We are following the recommendation that is straight out the [redux documentation here](http://redux.js.org/docs/advanced/AsyncActions.html) where we create "tripples" of actions for each asynchrounous action creator as shown below.
+
+```javascript
+{ type: 'FETCH_POSTS_REQUEST' }
+{ type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
+{ type: 'FETCH_POSTS_SUCCESS', response: { ... } }
+```
+
+There is one exception. We are also following [Flux Standard Actions](https://github.com/acdlite/flux-standard-action) pattern and so have payload instead of response as shown below.
+
+```
+{ type: 'FETCH_POSTS_SUCCESS', payload: { ... } }
+```
 
 ## To Do
 - update readme
