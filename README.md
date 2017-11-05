@@ -32,6 +32,7 @@ This is a boostrap that current demonstrates the concepts below. More details on
   - includes restriced routes and redirect flow
 - [React Router 4](https://reacttraining.com/react-router/)
   - React Router Redux Integration (The React Router folks recommend against this but we recommend this for better testing and debugging)
+- [Testing Approaches](#testing-approaches)
 
 ### Recommended State Access Pattern - Selectors
 We recommend **only accessing state from selectors** and not directly in components. 
@@ -100,6 +101,12 @@ There is one exception. We are also following [Flux Standard Actions](https://gi
 ```
 { type: 'FETCH_POSTS_SUCCESS', payload: { ... } }
 ```
+
+## Testing Approaches
+This section is still being worked but below are some helpful links for setting up debugging of tests
+
+http://facebook.github.io/jest/docs/en/troubleshooting.html
+https://github.com/airbnb/enzyme
 
 ## What the App Does
 - It has a few routes that you can navigate two
