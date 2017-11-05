@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Concepts and Patterns
 This is a boostrap that current demonstrates the concepts below. More details on these concepts coming soon.
-- [Recommended folder structure](https://github.com/RyanAtViceSoftware/vice-react-boilerplate/blob/master/README.md#Recommended-folder-structure)
+- [Recommended folder structure](#Recommended-folder-structure)
 - recommended folder structure
 - recommened async pattern
   - includes busy indicator
