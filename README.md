@@ -67,5 +67,4 @@ There is one exception. We are also following [Flux Standard Actions](https://gi
 - When you make an asynchronous call to the server by signing in, there will be a busy indicator shown automatically while the data is being fetched.
 
 ## To Do
-- update readme
-- get working with AirBnB style guide and provide proptype warnings
+- Provide proptype warnings
