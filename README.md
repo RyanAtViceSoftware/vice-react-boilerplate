@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 ```
 
 **Bad**
-```
+```javascript
 const mapStateToProps = state => ({
   userContext: state.userContext,
   isAuthenticated: !_.isEmpty(state.userContext)
