@@ -15,6 +15,7 @@ Will use [Prettier](https://github.com/prettier/prettier) to reformat code to st
 
 ## Concepts and Patterns
 This is a boostrap that current demonstrates the concepts below. More details on these concepts coming soon.
+- [Recommended State Access Pattern - Selectors](#recommended-state-access-pattern---selectors)
 - [Recommended Folder Structure](#recommended-folder-structure)
 - [Recommened Async Pattern](#recommened-async-pattern)
   - includes busy indicator
@@ -23,6 +24,32 @@ This is a boostrap that current demonstrates the concepts below. More details on
 - Recommended auth (haven't done authz yet)
   - includes restriced routes and redirect flow
 - [React Router 4](https://reacttraining.com/react-router/)
+
+## Recommended State Access Pattern - Selectors
+We recommend **only accessing state from selectors** and not directly in components. 
+
+**Good**
+```javascript
+const mapStateToProps = state => ({
+  userContext: getUserContext(state),
+  isAuthenticated: isAuthenticated(state)
+});
+```
+
+**Bad**
+```
+const mapStateToProps = state => ({
+  userContext: state.userContext,
+  isAuthenticated: !_.isEmpty(state.userContext)
+});
+```
+
+The benifits include: 
+- decoupling state structure from components
+  - this greatly improves your ability to refacotor you state atom shape and improve it over time by incorporating patterns like [normalization](http://redux.js.org/docs/recipes/reducers/NormalizingStateShape.html).
+- by also following [Recommended Folder Structure](#recommended-folder-structure) we collocate the state shape with the module that owns that state and the associated reducers. 
+
+While deviating slightly, this recommenation also aligns well with both the [redux documentation](http://redux.js.org/docs/recipes/ComputingDerivedData.html) and the creator of Redux, Dan Abromov's, [Idiomatic Redux course on EggHead](https://egghead.io/lessons/javascript-redux-colocating-selectors-with-reducers). **Note that using [Reselect](https://github.com/reactjs/reselect) is an optomization and not essentail to the recommended approach.**
 
 ### Recommended Folder Structure
 We are following an approach here heavily inspired by [Jack Hsu's recommended approach](https://jaysoo.ca/2016/02/28/organizing-redux-application/).
