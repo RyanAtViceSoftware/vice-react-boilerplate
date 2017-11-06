@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import './error.css';
@@ -13,6 +14,10 @@ const ErrorContainer = ({ errorMessage }) => (
     )}
   </div>
 );
+
+ErrorContainer.propTypes = {
+  errorMessage: PropTypes.string
+};
 
 const mapStateToProps = state => ({
   errorMessage: getErrorMessage(state)

@@ -28,7 +28,8 @@ class HomeContainer extends Component {
 }
 
 HomeContainer.propTypes = {
-  userContext: PropTypes.object.isRequired
+  userContext: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const mapDispatchToProps = {

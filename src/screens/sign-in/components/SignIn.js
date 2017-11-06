@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom';
 import { FORM_NAME } from '../signIn.constants';
@@ -12,7 +13,7 @@ const SignIn = props => {
       ) : (
         <div>
           <div>
-            <label>User Name</label>
+            <label htmlFor="userNameTextBox">User Name</label>
             <div>
               <Field
                 id="userNameTextBox"
@@ -24,7 +25,7 @@ const SignIn = props => {
             </div>
           </div>
           <div>
-            <label>Password</label>
+            <label htmlFor="passwordTextBox">Password</label>
             <div>
               <Field
                 id="passwordTextBox"
@@ -47,6 +48,14 @@ const SignIn = props => {
       )}
     </form>
   );
+};
+
+SignIn.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  from: PropTypes.object,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default reduxForm({

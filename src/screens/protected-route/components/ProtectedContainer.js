@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import userContext from '../../../modules/userContext';
@@ -21,6 +22,11 @@ const ProtectedContainer = ({ isAuthenticated, location }) => (
     )}
   </div>
 );
+
+ProtectedContainer.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  location: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: !!isAuthenticated(state)

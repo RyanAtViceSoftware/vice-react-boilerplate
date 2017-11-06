@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import userContext from '../../userContext';
 import { Route, Link } from 'react-router-dom';
@@ -56,6 +57,12 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  isBusy: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  resetError: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = {
   ...error.actions
