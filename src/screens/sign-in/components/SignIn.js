@@ -15,6 +15,7 @@ const SignIn = props => {
             <label>User Name</label>
             <div>
               <Field
+                id="userNameTextBox"
                 name="userName"
                 component="input"
                 type="text"
@@ -25,11 +26,20 @@ const SignIn = props => {
           <div>
             <label>Password</label>
             <div>
-              <Field name="password" component="input" type="password" />
+              <Field
+                id="passwordTextBox"
+                name="password"
+                component="input"
+                type="password"
+              />
             </div>
           </div>
           <div>
-            <button type="submit" disabled={pristine || submitting}>
+            <button
+              id="signInSubmitButton"
+              type="submit"
+              disabled={pristine || submitting}
+            >
               Submit
             </button>
           </div>
