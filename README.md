@@ -105,8 +105,9 @@ There is one exception. We are also following [Flux Standard Actions](https://gi
 ## Testing Approaches
 This section is still being worked but below are some helpful links for setting up debugging of tests
 
-http://facebook.github.io/jest/docs/en/troubleshooting.html
-https://github.com/airbnb/enzyme
+- http://facebook.github.io/jest/docs/en/troubleshooting.html
+- https://github.com/airbnb/enzyme
+- http://facebook.github.io/jest/docs/en/troubleshooting.html
 
 ## What the App Does
 - It has a few routes that you can navigate two
