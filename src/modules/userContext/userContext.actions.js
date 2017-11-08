@@ -40,8 +40,15 @@ function fakeAuthentication(userName, password) {
   const response = {};
 
   let stubError;
+  let permissions = [];
+  let displayName;
 
-  if (userName !== 'ryan@vicesoftware.com') {
+  if (userName === 'ryan@vicesoftware.com') {
+    displayName = 'Ryan Vice';
+    permissions = ['can-do-anything'];
+  } else if (userName === 'heather@vicesoftware.com') {
+    displayName = 'Heather Vice';
+  } else {
     stubError = {
       statusCode: NOT_FOUND
     };
@@ -58,8 +65,8 @@ function fakeAuthentication(userName, password) {
   } else {
     response.stubSuccess = {
       userName,
-      displayName: 'Ryan Vice',
-      permissions: ['can-do-anything']
+      displayName,
+      permissions
     };
   }
 

@@ -7,7 +7,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { OnUpdate } from 'rrc';
 import home from '../../../screens/home';
 import signin from '../../../screens/sign-in';
-import protectedRoute from '../../../screens/protected-route';
+import protectedRoute from '../../../screens/protected';
+import authenticated from '../../../screens/authenticated';
 import busyIndicator from '../../busyIndicator';
 import error from '../../error';
 
@@ -16,6 +17,7 @@ const { BusyIndicator } = busyIndicator.components;
 const { Home } = home.components;
 const { SignIn } = signin.components;
 const { Protected } = protectedRoute.components;
+const { Authenticated } = authenticated.components;
 const { isBusy } = busyIndicator.selectors;
 const { Error } = error.components;
 
@@ -30,6 +32,9 @@ class App extends Component {
             <ul>
               <li>
                 <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/authenticated">Authenticated</Link>
               </li>
               <li>
                 <Link to="/protected">Protected</Link>
@@ -47,6 +52,7 @@ class App extends Component {
                 <OnUpdate call={this.props.resetError} />
                 <Error />
                 <Route exact path="/" component={Home} />
+                <Route exact path="/authenticated" component={Authenticated} />
                 <Route exact path="/protected" component={Protected} />
                 <Route path="/sign-in" component={SignIn} />
               </div>
