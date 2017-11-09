@@ -1,18 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import _ from 'lodash';
-import './error.css';
 import { getErrorMessage } from '../error.selectors';
+import Error from './Error';
 
 const ErrorContainer = ({ errorMessage }) => (
-  <div>
-    {!_.isEmpty(errorMessage) && (
-      <div className="errorBox">
-        <p>{errorMessage}</p>
-      </div>
-    )}
-  </div>
+  <Error errorMessage={errorMessage}/>
 );
 
 ErrorContainer.propTypes = {
