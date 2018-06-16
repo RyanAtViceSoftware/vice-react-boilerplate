@@ -67,11 +67,11 @@ The basic idea is to treat each feature of the application like it's own node mo
 
 ```javascript
 // foo/index.js
-import * as actions from './actions';
+import * as actions from './foo.actions';
 import * as components from './components';
-import * as constants from './constants';
-import reducer from './reducer';
-import * as selectors from './selectors';
+import * as constants from './foo.constants';
+import reducer from './foo.reducer';
+import * as selectors from './foo.selectors';
 
 export default { actions, components, constants, reducer, selectors };
 ```
