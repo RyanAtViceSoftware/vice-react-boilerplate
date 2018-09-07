@@ -3,6 +3,7 @@
 - [Concepts and Patterns](#concepts-and-patterns)
 - [What the App Does](#what-the-app-does)
 - [Recommended Learning Resources](#recommended-learning-resources)
+- [Soure Maps and Chrome Workspaces](#soure-maps-and-chrome-workspaces)
 - [To Do](#to-do)
 
 ## Installation and Running
@@ -121,6 +122,9 @@ If you are new to react or redux and want to get up to speed then we recommend t
 1. Learn React and Flux basics: https://www.pluralsight.com/courses/react-flux-building-applications
 2. Learn Redux and ES6 basics: https://www.pluralsight.com/courses/react-redux-react-router-es6
 3. Learn Advanced Redux: https://egghead.io/courses/building-react-applications-with-idiomatic-redux
+
+## Soure Maps and Chrome Workspaces
+See this thread if you wan to get source maps working with chrome workspaces feature: https://github.com/webpack/webpack/issues/6400
 
 ## To Do
 - Provide proptype warnings
