@@ -3,12 +3,14 @@ import localStorage from "localStorage";
 import { API_URL } from "./http.constants";
 // import { getJwtToken } from "../../modules/userContext/userContext.selectors";
 // import { getState } from "../store";
-import * as actionTypes from "../userContext/userContext.actionTypes";
+// import * as actionTypes from "../userContext/userContext.actionTypes";
 
 export default {
   get,
   post,
-  put
+  put,
+  patch,
+  delete: callDelete
 };
 
 const ASYNC_DELAY = 1000;
@@ -87,7 +89,7 @@ function doFetch(url, config, { stubSuccess, stubError } = {}) {
       const authHeader = response.headers.get("Authorization");
 
       setJwtTokenFromHeaderResponse(authHeader);
-      updateSessionToken(parseJwtTokenFromHeader(authHeader));
+      // updateSessionToken(parseJwtTokenFromHeader(authHeader));
     }
 
     if (response.ok) {
@@ -150,10 +152,10 @@ function parseJwtTokenFromHeader(authorizationHeader) {
   return tokens.length > 1 ? tokens[1] : null;
 }
 
-const updateSessionToken = token => dispatch => {
-  // TODO: Do we need this?
-  // dispatch({
-  //   type: actionTypes.JWT_TOKEN_ASYNC.RECEIVED,
-  //   payload: token
-  // });
-};
+// const updateSessionToken = token => dispatch => {
+// TODO: Do we need this?
+// dispatch({
+//   type: actionTypes.JWT_TOKEN_ASYNC.RECEIVED,
+//   payload: token
+// });
+// };

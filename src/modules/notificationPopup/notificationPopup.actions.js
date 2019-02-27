@@ -1,7 +1,7 @@
 import { NOTIFY_SUCCESS, RESET } from "./notificationPopup.actionTypes";
 
 // We are using let so that we can assign fakes in tests. Might be a better way to do this :P
-export let handleError = (
+export const handleError = (
   type,
   { errorMessage, message, stack, componentStack }
 ) => {
@@ -12,7 +12,7 @@ export let handleError = (
   }
 
   console.log(`${errorMessage}:${message}:${stack}
-      ${componentStack ? `componentStack: ` + componentStack : ""}
+      ${componentStack ? "componentStack: " + componentStack : ""}
       `);
 
   return {
@@ -25,18 +25,16 @@ export let handleError = (
   };
 };
 
-export const notifySuccess = (successMessage, { title, config } = {}) => {
-  return {
-    type: NOTIFY_SUCCESS,
-    payload: {
-      successMessage,
-      config: {
-        ...config,
-        title
-      }
+export const notifySuccess = (successMessage, { title, config } = {}) => ({
+  type: NOTIFY_SUCCESS,
+  payload: {
+    successMessage,
+    config: {
+      ...config,
+      title
     }
-  };
-};
+  }
+});
 
 export const resetError = () => ({
   type: RESET

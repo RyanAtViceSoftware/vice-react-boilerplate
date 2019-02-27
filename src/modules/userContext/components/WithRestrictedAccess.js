@@ -31,7 +31,7 @@ const WithRestrictedAccess = (WrappedComponent, requiredPermissions = []) => {
           }}
         />
       ) : (
-        <div>You don't have the required permissions for this page.</div>
+        <div>You {"don't"} have the required permissions for this page.</div>
       )}
     </div>
   );
