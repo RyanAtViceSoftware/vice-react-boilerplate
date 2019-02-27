@@ -44,9 +44,8 @@ export const signIn = (userName, password) => {
     stubSuccess,
     stubError,
     mapResponseToPayload: r => r,
-    errorMessage: `Unable to retrieve log in user. Error: ${
-      stubError.statuscode
-    }`
+    errorMessage: `Unable to retrieve log in user. Error: ${stubError &&
+      stubError.statuscode}`
   });
 };
 

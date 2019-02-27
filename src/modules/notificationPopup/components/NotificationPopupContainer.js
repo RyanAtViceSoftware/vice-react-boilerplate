@@ -4,11 +4,6 @@ import { connect } from "react-redux";
 import { ToastContainer } from "react-toastr";
 import "./error.css";
 import { getError } from "../notificationPopup.selectors";
-import serverLogger from "../../serverLogger";
-
-const {
-  actions: { logErrorOnServer }
-} = serverLogger;
 
 class ErrorContainer extends React.Component {
   constructor(props) {

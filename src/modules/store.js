@@ -36,11 +36,7 @@ export const createStore = (rootReducer, history, initialState) => {
 };
 
 //  Allows access to store.dispatch outside of connected components (e.g. action creators)
-export const dispatch = args => {
-  store.dispatch(args);
-};
+export const dispatch = action => store.dispatch(action);
 
 // Allows access to store.dispatch outside of connected components (e.g. action creators)
-export const getState = args => {
-  store.getState(args);
-};
+export const getState = () => store.getState();

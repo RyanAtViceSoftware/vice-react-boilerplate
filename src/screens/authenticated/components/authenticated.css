@@ -1,0 +1,111 @@
+#wrapper{
+    height:100%;
+}
+
+.iconCol{
+    background-color:black;
+}
+
+
+
+
+.smallLogoContainer{
+    margin-bottom:30px;
+    text-align:center;
+}
+
+
+.imgContainer{
+    width:250px;
+    height:250px;
+    margin:50% auto;
+    margin-top:370px;
+}
+
+.formContainer{
+    max-width:400px;
+    margin:50% auto;
+    margin-top:20%;
+}
+
+.imgContainer img{
+    width:100%;
+}
+
+input[type=text] {
+    background: transparent;
+    border: none;
+    border-radius:0px;
+    border-bottom: 2px solid #c0c0c0;
+}
+
+.info{
+    color:#7C7C7C;
+
+}
+
+.label{
+    color:#777777;
+}
+
+.info a{
+    color:black;
+}
+
+.registrationContainer{
+    text-align:center;
+}
+
+.registrationContainer p{
+    margin-top:30px;
+}
+
+.inputContainer{
+    margin-top:20px;
+}
+
+#signUpBtn{
+    background-color:black;
+    color:white;
+    width:250px;
+    border-radius:25px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+@media only screen and (max-width: 768px){
+    .iconCol{
+        display:none;
+    }
+
+    body{
+        background-color:black;
+    }
+
+    .formCol{
+        background-color:#EEEEEE;
+    }
+    #wrapper{
+
+        margin:10px;
+    }
+
+    #signUpBtn{
+        background-color:#EEEEEE;
+        color:black;
+        border:1px solid black;
+    }
+
+    .formContainer{
+        padding-left:10%;
+        padding-right:10%;
+    }
+
+    .info{
+        font-size:8pt;
+    }
+
+    .signUpLinkCtn{
+        display:none;
+    }
+}

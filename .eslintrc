@@ -26,6 +26,7 @@
     "no-restricted-syntax":"off",
     "no-prototype-builtins": "off",
     "no-underscore-dangle":"off",
+    "no-console": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/require-default-props": 0,
     "react/forbid-prop-types": 0,
@@ -34,7 +35,12 @@
     "react/destructuring-assignment" : 0,
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "prefer-template":"off"
+    "prefer-template":"off",
+    "jsx-a11y/alt-text": "off",
+    "react/no-unescaped-entities": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/button-has-type": "off",
+    "react/prop-types": "off"
   },
   "parser": "babel-eslint"
 }
