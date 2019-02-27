@@ -1,4 +1,4 @@
-import BusyIndicator from './BusyIndicator';
+import BusyIndicator from "./BusyIndicator";
 
 export default {
   BusyIndicator

@@ -1,4 +1,4 @@
-import * as actionTypes from './userContext.actionTypes';
+import * as actionTypes from "./userContext.actionTypes";
 
 export default function reducer(state = {}, action) {
   switch (action.type) {

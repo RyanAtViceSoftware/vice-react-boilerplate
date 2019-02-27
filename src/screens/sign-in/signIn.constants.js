@@ -1,1 +1,1 @@
-export const FORM_NAME = 'signIn';
+export const FORM_NAME = "signIn";

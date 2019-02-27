@@ -1,15 +1,17 @@
-import http, { constants } from '../http';
-import * as actionTypes from './userContext.actionTypes';
-import error from '../error';
+import http, { constants } from "../http";
+import * as actionTypes from "./userContext.actionTypes";
+import error from "../error";
 
-const { actions: { handleError } } = error;
+const {
+  actions: { handleError }
+} = error;
 const { NOT_FOUND, BAD_REQUEST } = constants;
 
 export const signIn = (userName, password) => async dispatch => {
   try {
     dispatch({ type: actionTypes.LOGIN_REQUESTED });
 
-    const url = 'user-context';
+    const url = "user-context";
 
     const body = { userName, password };
 
@@ -22,11 +24,11 @@ export const signIn = (userName, password) => async dispatch => {
     let errorMessage;
 
     if (error.statusCode === NOT_FOUND) {
-      errorMessage = 'User name not found.';
+      errorMessage = "User name not found.";
     } else if (error.statusCode) {
-      errorMessage = 'Invalid password.';
+      errorMessage = "Invalid password.";
     } else {
-      errorMessage = 'An unknown error occurred';
+      errorMessage = "An unknown error occurred";
     }
 
     dispatch(handleError(actionTypes.LOGIN_ERROR, { errorMessage }));
@@ -43,18 +45,18 @@ function fakeAuthentication(userName, password) {
   let permissions = [];
   let displayName;
 
-  if (userName === 'ryan@vicesoftware.com') {
-    displayName = 'Ryan Vice';
-    permissions = ['can-do-anything'];
-  } else if (userName === 'heather@vicesoftware.com') {
-    displayName = 'Heather Vice';
+  if (userName === "ryan@vicesoftware.com") {
+    displayName = "Ryan Vice";
+    permissions = ["can-do-anything"];
+  } else if (userName === "heather@vicesoftware.com") {
+    displayName = "Heather Vice";
   } else {
     stubError = {
       statusCode: NOT_FOUND
     };
   }
 
-  if (password !== 'password') {
+  if (password !== "password") {
     stubError = {
       statusCode: BAD_REQUEST
     };

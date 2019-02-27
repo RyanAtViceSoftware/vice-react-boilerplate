@@ -1,1 +1,1 @@
-export const STATE_NAME = 'error';
+export const STATE_NAME = "error";

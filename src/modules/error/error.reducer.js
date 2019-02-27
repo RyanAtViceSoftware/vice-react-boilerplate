@@ -1,7 +1,7 @@
-import * as actionTypes from './error.actionTypes';
+import * as actionTypes from "./error.actionTypes";
 
 export default function reducer(state = {}, action) {
-  if (action.type.includes('_ERROR')) {
+  if (action.type.includes("_ERROR")) {
     return action.payload;
   }
 

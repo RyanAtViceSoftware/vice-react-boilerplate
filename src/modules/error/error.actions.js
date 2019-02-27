@@ -1,4 +1,4 @@
-import * as actionTypes from './error.actionTypes';
+import * as actionTypes from "./error.actionTypes";
 
 export const handleError = (type, { errorMessage, message, stack }) => ({
   type,

@@ -1,5 +1,5 @@
-import React from 'react';
-import userContext from '../../../modules/userContext';
+import React from "react";
+import userContext from "../../../modules/userContext";
 
 const { WithRestrictedAccess } = userContext.components;
 

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import {
   isAuthenticated,
   currentUserHasPermissions
-} from '../userContext.selectors';
+} from "../userContext.selectors";
 
 const WithRestrictedAccess = (WrappedComponent, requiredPermissions = []) => {
   const curriedCurrentUserHasPermissions = currentUserHasPermissions.bind(
@@ -26,7 +26,7 @@ const WithRestrictedAccess = (WrappedComponent, requiredPermissions = []) => {
         <Redirect
           to={{
             // Not authenticated so redirect to /sign-in
-            pathname: '/sign-in',
+            pathname: "/sign-in",
             state: { from: location }
           }}
         />

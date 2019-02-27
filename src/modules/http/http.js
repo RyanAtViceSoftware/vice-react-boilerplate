@@ -11,11 +11,11 @@ const ASYNC_DELAY = 1000;
 // about the stubs.
 function get(url, body, { stubSuccess, stubError } = {}) {
   if (!url) {
-    throw new Error('You must specify a url');
+    throw new Error("You must specify a url");
   }
 
   if (!body) {
-    throw new Error('You must specify a body');
+    throw new Error("You must specify a body");
   }
 
   if (stubSuccess) {

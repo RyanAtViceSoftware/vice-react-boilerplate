@@ -1,4 +1,4 @@
-import WithRestrictedAccess from './WithRestrictedAccess';
+import WithRestrictedAccess from "./WithRestrictedAccess";
 
 export default {
   WithRestrictedAccess

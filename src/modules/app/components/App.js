@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import userContext from '../../userContext';
-import { Route, Link } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
-import { OnUpdate } from 'rrc';
-import home from '../../../screens/home';
-import signin from '../../../screens/sign-in';
-import protectedRoute from '../../../screens/protected';
-import authenticated from '../../../screens/authenticated';
-import busyIndicator from '../../busyIndicator';
-import error from '../../error';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import userContext from "../../userContext";
+import { Route, Link } from "react-router-dom";
+import { ConnectedRouter } from "react-router-redux";
+import { OnUpdate } from "rrc";
+import home from "../../../screens/home";
+import signin from "../../../screens/sign-in";
+import protectedRoute from "../../../screens/protected";
+import authenticated from "../../../screens/authenticated";
+import busyIndicator from "../../busyIndicator";
+import error from "../../error";
 
 const { getUserContext } = userContext.selectors;
 const { BusyIndicator } = busyIndicator.components;
@@ -79,4 +79,7 @@ const mapStateToProps = state => ({
   isBusy: isBusy(state)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

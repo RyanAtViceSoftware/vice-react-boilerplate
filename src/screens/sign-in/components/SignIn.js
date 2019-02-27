@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { Redirect } from 'react-router-dom';
-import { FORM_NAME } from '../signIn.constants';
+import React from "react";
+import PropTypes from "prop-types";
+import { Field, reduxForm } from "redux-form";
+import { Redirect } from "react-router-dom";
+import { FORM_NAME } from "../signIn.constants";
 
 const SignIn = props => {
   const { handleSubmit, pristine, submitting, isAuthenticated, from } = props;

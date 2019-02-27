@@ -1,1 +1,1 @@
-export const ACTION_TYPE_PREFIX = 'vbp';
+export const ACTION_TYPE_PREFIX = "vbp";

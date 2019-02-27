@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 export const getUserContext = state => state.userContext;
 export const isAuthenticated = state => !_.isEmpty(getUserContext(state));
@@ -20,7 +20,9 @@ function userHasPermissions(permissions, state) {
     return false;
   }
 
-  return !!userContext.permissions.find(up =>
-    permissions.find(rp => rp === up)
+  return !!userContext.permissions.find(userPermission =>
+    permissions.find(
+      requiredPermission => requiredPermission === userPermission
+    )
   );
 }

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import userContext from '../../../modules/userContext';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import userContext from "../../../modules/userContext";
 
 const { getUserContext, isAuthenticated } = userContext.selectors;
 
@@ -41,4 +41,7 @@ const mapStateToProps = state => ({
   isAuthenticated: isAuthenticated(state)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeContainer);

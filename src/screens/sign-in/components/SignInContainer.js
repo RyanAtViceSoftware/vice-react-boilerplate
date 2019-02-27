@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import userContext from '../../../modules/userContext';
-import SignIn from './SignIn';
-import { getSignInFormValues } from '../signIn.selectors';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import userContext from "../../../modules/userContext";
+import SignIn from "./SignIn";
+import { getSignInFormValues } from "../signIn.selectors";
 
 const { isAuthenticated } = userContext.selectors;
 
@@ -19,7 +19,7 @@ class LoginContainer extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { isAuthenticated } = this.props;
 
     return (
@@ -48,4 +48,7 @@ const mapStateToProps = state => ({
   isAuthenticated: isAuthenticated(state)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginContainer);

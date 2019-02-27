@@ -1,3 +1,3 @@
-import _ from 'lodash';
+import _ from "lodash";
 
-export const getErrorMessage = state => _.get(state, 'error.errorMessage');
+export const getErrorMessage = state => _.get(state, "error.errorMessage");

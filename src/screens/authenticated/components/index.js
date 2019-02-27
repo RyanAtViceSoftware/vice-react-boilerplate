@@ -1,4 +1,4 @@
-import Authenticated from './AuthenticatedContainer';
+import Authenticated from "./AuthenticatedContainer";
 
 export default {
   Authenticated

@@ -1,1 +1,1 @@
-export const STATE_NAME = 'busyIndicator';
+export const STATE_NAME = "busyIndicator";

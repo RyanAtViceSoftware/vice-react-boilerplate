@@ -19,8 +19,6 @@ We support the standard [Create React App scripts](https://github.com/facebookin
 ### `npm run pretty`
 Will use [Prettier](https://github.com/prettier/prettier) to reformat code to standard format used by this repo. **Note that you will want to [configure your editor to use prettier](https://github.com/prettier/prettier#editor-integration)**.
 
-
-
 ## Concepts and Patterns
 This is a boostrap that current demonstrates the concepts below. More details on these concepts coming soon.
 - [Recommended State Access Pattern - Selectors](#recommended-state-access-pattern---selectors)

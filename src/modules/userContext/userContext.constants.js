@@ -1,1 +1,1 @@
-export const STATE_NAME = 'userContext';
+export const STATE_NAME = "userContext";

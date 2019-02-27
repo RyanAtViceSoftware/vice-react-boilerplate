@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './error.css';
-import _ from 'lodash';
+import React from "react";
+import PropTypes from "prop-types";
+import "./error.css";
+import _ from "lodash";
 
-const Error = ({errorMessage}) => (
+const Error = ({ errorMessage }) => (
   <div>
     {!_.isEmpty(errorMessage) && (
       <div className="errorBox">
