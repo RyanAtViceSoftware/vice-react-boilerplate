@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import userContext from "../../userContext";
 import { Route, Link } from "react-router-dom";
 import { ConnectedRouter } from "react-router-redux";
 import { OnUpdate } from "rrc";
+import userContext from "../../userContext";
 import home from "../../../screens/home";
 import signin from "../../../screens/sign-in";
 import protectedRoute from "../../../screens/protected";

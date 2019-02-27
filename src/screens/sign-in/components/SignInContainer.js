@@ -33,7 +33,7 @@ class LoginContainer extends React.Component {
 }
 
 LoginContainer.propTypes = {
-  signInFormValues: PropTypes.object.isRequired,
+  // signInFormValues: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   location: PropTypes.object.isRequired,
   signIn: PropTypes.func.isRequired

@@ -6,6 +6,8 @@ import {
 import { routerMiddleware } from "react-router-redux";
 import thunk from "redux-thunk";
 
+const reduxImmutableStateInvariant = require("redux-immutable-state-invariant").default();
+
 let store;
 
 export const createStore = (rootReducer, history, initialState) => {
@@ -20,7 +22,7 @@ export const createStore = (rootReducer, history, initialState) => {
   const middleware = [routerMiddlewareWithHistory, thunk];
 
   if (process.env.NODE_ENV !== "production") {
-    middleware.push(require("redux-immutable-state-invariant").default());
+    middleware.push(reduxImmutableStateInvariant);
   }
 
   const enhancer = composeEnhancers(
@@ -33,12 +35,12 @@ export const createStore = (rootReducer, history, initialState) => {
   return store;
 };
 
-// Allows access to store.dispatch outside of connected components (e.g. action creators)
-export const dispatch = () => {
-  store.dispatch(arguments);
+//  Allows access to store.dispatch outside of connected components (e.g. action creators)
+export const dispatch = args => {
+  store.dispatch(args);
 };
 
 // Allows access to store.dispatch outside of connected components (e.g. action creators)
-export const getState = () => {
-  store.getState(arguments);
+export const getState = args => {
+  store.getState(args);
 };

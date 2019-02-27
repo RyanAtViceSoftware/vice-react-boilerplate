@@ -1,4 +1,4 @@
-import http, { constants } from "../http";
+import { constants } from "../http";
 import * as actionTypes from "./userContext.actionTypes";
 import doAsync from "../doAsync";
 
