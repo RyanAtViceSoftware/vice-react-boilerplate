@@ -5,6 +5,13 @@ export default function reducer(state = {}, action) {
     case actionTypes.LOGIN_ASYNC.RECEIVED:
       return action.payload;
 
+    case actionTypes.UPDATE_USER_CONTEXT: {
+      return {
+        ...state,
+        ...action.payload
+      };
+    }
+
     default:
       return state;
   }

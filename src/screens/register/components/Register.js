@@ -68,7 +68,7 @@ const Register = ({ handleSubmit }) => (
             <span className="label">User ID:</span>
             <Field
               component="input"
-              name="userId"
+              name="username"
               type="text"
               className="form-control"
             />

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import userContext from "../../../modules/userContext";
 import SignIn from "./SignIn";
@@ -15,7 +14,7 @@ class LoginContainer extends React.Component {
   }
 
   handleSubmit(values) {
-    this.props.signIn(values.userName, values.password);
+    this.props.signIn(values.email, values.password);
   }
 
   render() {
@@ -32,15 +31,8 @@ class LoginContainer extends React.Component {
   }
 }
 
-LoginContainer.propTypes = {
-  // signInFormValues: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  location: PropTypes.object.isRequired,
-  signIn: PropTypes.func.isRequired
-};
-
 const mapDispatchToProps = {
-  ...userContext.actions
+  signIn: userContext.actions.signIn
 };
 
 const mapStateToProps = state => ({

@@ -1,5 +1,5 @@
-import Home from "./HomeContainer";
+import Account from "./AccountContainer";
 
 export default {
-  Home
+  Account
 };

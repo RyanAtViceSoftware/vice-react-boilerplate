@@ -5,16 +5,17 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "react-router-redux";
 import { OnUpdate } from "rrc";
 import userContext from "../../userContext";
-import home from "../../../screens/account";
+import account from "../../../screens/account";
 import signin from "../../../screens/sign-in";
 import register from "../../../screens/register";
 import busyIndicator from "../../busyIndicator";
 import error from "../../error";
 import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.css";
 
 const { getUserContext } = userContext.selectors;
 const { BusyIndicator } = busyIndicator.components;
-const { Home } = home.components;
+const { Account } = account.components;
 const { SignIn } = signin.components;
 const { Register } = register.components;
 const { isBusy } = busyIndicator.selectors;
@@ -32,8 +33,8 @@ class App extends Component {
           <div>
             <OnUpdate call={this.props.resetError} />
             <Error />
-            <Route exact path="/" component={Home} />
-            <Route exact path="/account" component={Home} />
+            <Route exact path="/" component={Account} />
+            <Route exact path="/account" component={Account} />
             <Route exact path="/register" component={Register} />
             <Route path="/sign-in" component={SignIn} />
           </div>

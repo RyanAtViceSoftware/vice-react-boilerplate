@@ -41,12 +41,12 @@ const SignIn = props => {
               <div className="inputContainer">
                 <span className="label">Email</span>
                 <Field
-                  id="userNameTextBox"
+                  id="emailTextBox"
                   className="form-control"
-                  name="userName"
+                  name="email"
                   component="input"
                   type="text"
-                  placeholder="User Name"
+                  placeholder="EMail"
                 />
               </div>
 
