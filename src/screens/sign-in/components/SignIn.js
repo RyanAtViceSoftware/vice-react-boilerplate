@@ -46,7 +46,6 @@ const SignIn = props => {
                   name="email"
                   component="input"
                   type="text"
-                  placeholder="EMail"
                 />
               </div>
 
