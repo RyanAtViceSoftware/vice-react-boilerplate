@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import userContext from "../../../modules/userContext";
 
-const { getUserContext, isAuthenticated } = userContext.selectors;
+const {
+  selectors: { getUserContext, isAuthenticated },
+  components: { WithRestrictedAccess }
+} = userContext;
 
 class HomeContainer extends Component {
   render() {
@@ -41,7 +44,9 @@ const mapStateToProps = state => ({
   isAuthenticated: isAuthenticated(state)
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeContainer);
+export default WithRestrictedAccess(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(HomeContainer)
+);

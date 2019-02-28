@@ -5,10 +5,9 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "react-router-redux";
 import { OnUpdate } from "rrc";
 import userContext from "../../userContext";
-import home from "../../../screens/home";
+import home from "../../../screens/account";
 import signin from "../../../screens/sign-in";
-import protectedRoute from "../../../screens/protected";
-import authenticated from "../../../screens/authenticated";
+import register from "../../../screens/register";
 import busyIndicator from "../../busyIndicator";
 import error from "../../error";
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,8 +16,7 @@ const { getUserContext } = userContext.selectors;
 const { BusyIndicator } = busyIndicator.components;
 const { Home } = home.components;
 const { SignIn } = signin.components;
-const { Protected } = protectedRoute.components;
-const { Authenticated } = authenticated.components;
+const { Register } = register.components;
 const { isBusy } = busyIndicator.selectors;
 const { Error } = error.components;
 
@@ -35,8 +33,8 @@ class App extends Component {
             <OnUpdate call={this.props.resetError} />
             <Error />
             <Route exact path="/" component={Home} />
-            <Route exact path="/authenticated" component={Authenticated} />
-            <Route exact path="/protected" component={Protected} />
+            <Route exact path="/account" component={Home} />
+            <Route exact path="/register" component={Register} />
             <Route path="/sign-in" component={SignIn} />
           </div>
         )}

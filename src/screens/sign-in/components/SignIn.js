@@ -1,11 +1,18 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { FORM_NAME } from "../signIn.constants";
 import "./SignIn.css";
 
 const SignIn = props => {
-  const { handleSubmit, pristine, submitting, isAuthenticated, from } = props;
+  const {
+    handleSubmit,
+    pristine,
+    submitting,
+    isAuthenticated,
+    from,
+    history
+  } = props;
   return (
     <form onSubmit={handleSubmit}>
       {isAuthenticated ? (
@@ -68,14 +75,19 @@ const SignIn = props => {
 
                 <div id="signUpBtnCtn" className="row section">
                   <div className="col-6">
-                    <button id="signIn">Sign in</button>
+                    <button
+                      id="signIn"
+                      type="submit"
+                      disabled={pristine || submitting}
+                    >
+                      Sign in
+                    </button>
                   </div>
 
                   <div className="col-6 signUpCtn">
                     <button
                       id="signUp"
-                      type="submit"
-                      disabled={pristine || submitting}
+                      onClick={() => history.push("/register")}
                     >
                       Sign up
                     </button>
@@ -95,6 +107,8 @@ const SignIn = props => {
   );
 };
 
-export default reduxForm({
-  form: FORM_NAME // a unique identifier for this form
-})(SignIn);
+export default withRouter(
+  reduxForm({
+    form: FORM_NAME // a unique identifier for this form
+  })(SignIn)
+);
