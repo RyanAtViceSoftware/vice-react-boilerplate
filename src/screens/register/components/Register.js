@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { FORM_NAME } from "../register.constants";
 
-const Register = ({ handleSubmit }) => (
+const Register = ({ handleSubmit, push }) => (
   <form className="add" onSubmit={handleSubmit}>
     <div className="row" id="wrapper">
       <div className="col-md-6 iconCol">
@@ -110,7 +110,10 @@ const Register = ({ handleSubmit }) => (
 
             <p className="signUpLinkCtn">
               <span className="info">
-                Already have an account? <a href="#">Sign in.</a>
+                Already have an account?{" "}
+                <a href="#" onClick={() => push("/sign-in")}>
+                  Sign in.
+                </a>
               </span>
             </p>
           </div>

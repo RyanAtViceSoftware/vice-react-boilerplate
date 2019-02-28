@@ -14,7 +14,9 @@ class RegisterContainer extends React.Component {
   };
 
   render() {
-    return <Register onSubmit={this.handleSubmit} />;
+    return (
+      <Register onSubmit={this.handleSubmit} push={this.props.history.push} />
+    );
   }
 }
 
