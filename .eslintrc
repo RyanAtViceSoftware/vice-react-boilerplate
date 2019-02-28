@@ -40,7 +40,8 @@
     "react/no-unescaped-entities": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "react/button-has-type": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "linebreak-style": "off"
   },
   "parser": "babel-eslint"
 }
