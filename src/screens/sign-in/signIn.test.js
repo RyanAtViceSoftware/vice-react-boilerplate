@@ -25,7 +25,7 @@ describe("Given we are on Sign In page ", () => {
       const dummyUserName = "ryan";
       const dummyPassword = "password";
       const expectedGetBody = {
-        userName: dummyUserName,
+        email: dummyUserName,
         password: dummyPassword
       };
 

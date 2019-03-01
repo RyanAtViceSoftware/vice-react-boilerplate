@@ -1,55 +1,52 @@
-import http, { constants } from "../http";
+import { constants } from "../http";
 import * as actionTypes from "./userContext.actionTypes";
-import error from "../error";
+import doAsync from "../doAsync";
 
-const {
-  actions: { handleError }
-} = error;
 const { NOT_FOUND, BAD_REQUEST } = constants;
 
-export const signIn = (userName, password) => async dispatch => {
-  try {
-    dispatch({ type: actionTypes.LOGIN_REQUESTED });
+export const signIn = (email, password) => {
+  const { stubSuccess, stubError } = fakeAuthentication(email, password);
 
-    const url = "user-context";
-
-    const body = { userName, password };
-
-    const fakeServerResponse = fakeAuthentication(userName, password);
-
-    const response = await http.get(url, body, fakeServerResponse);
-
-    dispatch({ type: actionTypes.LOGIN_RECEIVED, payload: response.body });
-  } catch (error) {
-    let errorMessage;
-
-    if (error.statusCode === NOT_FOUND) {
-      errorMessage = "User name not found.";
-    } else if (error.statusCode) {
-      errorMessage = "Invalid password.";
-    } else {
-      errorMessage = "An unknown error occurred";
-    }
-
-    dispatch(handleError(actionTypes.LOGIN_ERROR, { errorMessage }));
-  }
+  return doAsync({
+    actionType: actionTypes.LOGIN_ASYNC,
+    url: "api/v1/login", // TODO: Let's move the base url to doAsync
+    httpConfig: {
+      body: JSON.stringify({ email, password })
+    },
+    stubSuccess,
+    stubError,
+    mapResponseToPayload: r => r,
+    errorMessage: `Unable to retrieve log in user. Error: ${stubError &&
+      stubError.statuscode}`
+  });
 };
+
+export const updateUserContext = user => ({
+  type: actionTypes.UPDATE_USER_CONTEXT,
+  payload: user
+});
 
 // Will create a request with either
 // (1) stubSuccess property to fake a successful server authentication
 // (2) stubError property to fake a server authentication error
-function fakeAuthentication(userName, password) {
+function fakeAuthentication(email, password) {
   const response = {};
 
   let stubError;
   let permissions = [];
   let displayName;
+  let username;
 
-  if (userName === "ryan@vicesoftware.com") {
-    displayName = "Ryan Vice";
+  if (email === "bak@clear-launch.com") {
+    displayName = "Bak Zoumanigui";
+    username = "BakZoumanigui";
     permissions = ["can-do-anything"];
-  } else if (userName === "heather@vicesoftware.com") {
-    displayName = "Heather Vice";
+  } else if (email === "orion@clear-launch") {
+    displayName = "Orion Jensen";
+    username = "OrionJensen";
+  } else if (email === "Phil.boyer@i2290.com") {
+    displayName = "Phil Boyer";
+    username = "PhilBoyer";
   } else {
     stubError = {
       statusCode: NOT_FOUND
@@ -66,9 +63,10 @@ function fakeAuthentication(userName, password) {
     response.stubError = stubError;
   } else {
     response.stubSuccess = {
-      userName,
+      email,
       displayName,
-      permissions
+      permissions,
+      username
     };
   }
 
