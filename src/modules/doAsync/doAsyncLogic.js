@@ -45,12 +45,6 @@ export function handleError(
       An error occurred when trying to dispatch results of ajax call to Redux.`
     });
   }
-
-  dispatch({
-    type: actionType.ERROR,
-    payload: null
-  });
-  throw exception;
 }
 
 export function getError(httpMethod, url, httpConfig, errorMessage) {

@@ -1,4 +1,4 @@
-import { NOTIFY_SUCCESS, RESET } from "./notificationPopup.actionTypes";
+import { NOTIFY_SUCCESS, RESET, CLOSE } from "./notificationPopup.actionTypes";
 
 // We are using let so that we can assign fakes in tests. Might be a better way to do this :P
 export const handleError = (
@@ -38,4 +38,8 @@ export const notifySuccess = (successMessage, { title, config } = {}) => ({
 
 export const resetError = () => ({
   type: RESET
+});
+
+export const closePopup = () => ({
+  type: CLOSE
 });

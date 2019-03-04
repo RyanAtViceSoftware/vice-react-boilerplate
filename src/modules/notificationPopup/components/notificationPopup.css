@@ -1,0 +1,23 @@
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.errorBox {
+    background-color: #f0ac9e;
+    border: 1px solid #ffa596;
+    width: 200px;
+    margin: 5px 0 5px 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
