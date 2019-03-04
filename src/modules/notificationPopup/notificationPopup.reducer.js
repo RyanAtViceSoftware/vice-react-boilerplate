@@ -1,4 +1,4 @@
-import * as actionTypes from "./error.actionTypes";
+import { NOTIFY_SUCCESS, RESET, CLOSE } from "./notificationPopup.actionTypes";
 
 export default function reducer(state = {}, action) {
   if (action.type.includes("_ERROR")) {
@@ -6,8 +6,12 @@ export default function reducer(state = {}, action) {
   }
 
   switch (action.type) {
-    case actionTypes.RESET: {
+    case CLOSE:
+    case RESET: {
       return {};
+    }
+    case NOTIFY_SUCCESS: {
+      return action.payload;
     }
     default: {
       return state;

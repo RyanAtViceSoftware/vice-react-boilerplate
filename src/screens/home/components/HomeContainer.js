@@ -15,8 +15,8 @@ class HomeContainer extends Component {
           <div>
             <h1>Welcome Guest</h1>
             <p>
-              You can login as ryan@vicesoftware.com with 'password' for your
-              password.
+              You can login as ryan@vicesoftware.com with {"'password'"} for
+              your password.
             </p>
           </div>
         ) : (

@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import userContext from "../../userContext";
 import { Route, Link } from "react-router-dom";
 import { ConnectedRouter } from "react-router-redux";
 import { OnUpdate } from "rrc";
+import userContext from "../../userContext";
 import home from "../../../screens/home";
 import signin from "../../../screens/sign-in";
 import protectedRoute from "../../../screens/protected";
 import authenticated from "../../../screens/authenticated";
 import busyIndicator from "../../busyIndicator";
-import error from "../../error";
+import notificationPopup from "../../notificationPopup";
 
 const { getUserContext } = userContext.selectors;
 const { BusyIndicator } = busyIndicator.components;
@@ -19,7 +18,7 @@ const { SignIn } = signin.components;
 const { Protected } = protectedRoute.components;
 const { Authenticated } = authenticated.components;
 const { isBusy } = busyIndicator.selectors;
-const { Error } = error.components;
+const { NotificationPopup } = notificationPopup.components;
 
 class App extends Component {
   render() {
@@ -45,12 +44,12 @@ class App extends Component {
             </ul>
           </header>
           <div className="App-intro">
+            <NotificationPopup />
             {isBusy ? (
               <BusyIndicator />
             ) : (
               <div>
                 <OnUpdate call={this.props.resetError} />
-                <Error />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/authenticated" component={Authenticated} />
                 <Route exact path="/protected" component={Protected} />
@@ -64,14 +63,8 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  isBusy: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired,
-  resetError: PropTypes.func.isRequired
-};
-
 const mapDispatchToProps = {
-  ...error.actions
+  resetError: notificationPopup.actions.resetError
 };
 
 const mapStateToProps = state => ({
