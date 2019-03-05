@@ -2,16 +2,12 @@ import * as store from "../../store";
 import localStorage from "localStorage";
 import http from "../http";
 import fetch from "cross-fetch";
-import axios from "axios";
-import fileDownload from "react-file-download";
 import mockFetch from "../../../test/mockFetch";
 
 const expectedHostName = "expectedHostName";
 
 jest.mock("../../store");
 jest.mock("cross-fetch");
-jest.mock("axios");
-jest.mock("react-file-download");
 jest.mock("../http.constants", () => ({
   API_URL: "http://expectedHostName/api"
 }));
