@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, Link } from "react-router-dom";
-import { ConnectedRouter } from "react-router-redux";
+import { Router, Route, Link } from "react-router-dom";
+// import { ConnectedRouter } from "react-router-redux";
 import { OnUpdate } from "rrc";
 import userContext from "../../userContext";
 import home from "../../../screens/home";
 import signin from "../../../screens/sign-in";
 import protectedRoute from "../../../screens/protected";
 import authenticated from "../../../screens/authenticated";
+import wizardExample from "../../../screens/wizardExample";
 import busyIndicator from "../../busyIndicator";
 import notificationPopup from "../../notificationPopup";
 
@@ -17,6 +18,7 @@ const { Home } = home.components;
 const { SignIn } = signin.components;
 const { Protected } = protectedRoute.components;
 const { Authenticated } = authenticated.components;
+const { WizardExample } = wizardExample.components;
 const { isBusy } = busyIndicator.selectors;
 const { NotificationPopup } = notificationPopup.components;
 
@@ -25,7 +27,7 @@ class App extends Component {
     const { isBusy, history } = this.props;
 
     return (
-      <ConnectedRouter history={history}>
+      <Router history={history}>
         <div>
           <header>
             <ul>
@@ -37,6 +39,9 @@ class App extends Component {
               </li>
               <li>
                 <Link to="/protected">Protected</Link>
+              </li>
+              <li>
+                <Link to="/wizard-example">Wizard Example</Link>
               </li>
               <li>
                 <Link to="/sign-in">Sign In</Link>
@@ -53,12 +58,13 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/authenticated" component={Authenticated} />
                 <Route exact path="/protected" component={Protected} />
+                <Route exact path="/wizard-example" component={WizardExample} />
                 <Route path="/sign-in" component={SignIn} />
               </div>
             )}
           </div>
         </div>
-      </ConnectedRouter>
+      </Router>
     );
   }
 }
