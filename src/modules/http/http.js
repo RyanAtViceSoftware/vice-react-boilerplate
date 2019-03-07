@@ -1,5 +1,7 @@
+import axios from "axios";
 import fetch from "cross-fetch";
 import localStorage from "localStorage";
+import fileDownload from "react-file-download";
 import { API_URL } from "./http.constants";
 // import { getJwtToken } from "../../modules/userContext/userContext.selectors";
 // import { getState } from "../store";
@@ -10,7 +12,10 @@ export default {
   post,
   put,
   patch,
-  delete: callDelete
+  delete: callDelete,
+  axiosGet,
+  axiosPostFile,
+  axiosPost
 };
 
 const ASYNC_DELAY = 1000;
@@ -53,6 +58,20 @@ function callDelete(url, config, { stubSuccess, stubError } = {}) {
   };
 
   return doFetch(url, config, { stubSuccess, stubError });
+}
+
+function axiosGet(url, config) {
+  return doAxiosGet(url, config);
+}
+function axiosPostFile(url, config) {
+  const postData = config.data;
+  const { data, ...httpConfig } = config;
+  return doAxiosPostFile(url, postData, httpConfig);
+}
+function axiosPost(url, config) {
+  const postData = config.body;
+  const { ...httpConfig } = config;
+  return doAxiosPost(url, postData, httpConfig);
 }
 
 // If stubSuccess or stubError is defined then we will fake a successful call to the
@@ -130,6 +149,67 @@ function addJwtToken(config) {
   //   }
   // };
   return config;
+}
+
+function doAxiosGet(url, config) {
+  const axUrl = buildUrl(url);
+  const axConfig = addJwtToken(config);
+
+  return axios.get(axUrl, axConfig).then(response => {
+    if (response.headers) {
+      setJwtTokenFromHeaderResponse(response.headers["authorization"]);
+    }
+    fileDownload(response.data, "template.xlsx");
+  });
+}
+
+function doAxiosPostFile(url, postData, config) {
+  const axUrl = buildUrl(url);
+  const axConfig = addJwtToken(config);
+
+  return axios
+    .post(axUrl, postData, axConfig)
+    .then(response => {
+      if (response.headers) {
+        setJwtTokenFromHeaderResponse(response.headers["authorization"]);
+      }
+      const {
+        data: { result }
+      } = response;
+      if (result.result) {
+        return response;
+      }
+      return Promise.reject({ response: response });
+    })
+    .catch(error => {
+      const unauthorized = 401;
+      const {
+        response: { status }
+      } = error;
+      if (status && status === unauthorized) {
+        // All else failed so redirect user ot FMS to reauthenticate
+        localStorage.removeItem("jwtToken");
+        // redirectToSignOut();
+      }
+
+      return Promise.reject(error);
+    });
+}
+
+function doAxiosPost(url, postData, config) {
+  const axUrl = buildUrl(url);
+  const axConfig = addJwtToken(config);
+
+  return axios.post(axUrl, postData, axConfig).then(response => {
+    if (response.headers) {
+      setJwtTokenFromHeaderResponse(response.headers["authorization"]);
+    }
+    const requestBody = JSON.parse(config.body);
+    fileDownload(
+      response.data,
+      `${requestBody.outputFileName || "Template"}.xlsx`
+    );
+  });
 }
 
 function setJwtTokenFromHeaderResponse(authorizationHeader) {
