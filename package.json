@@ -3,18 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-eslint": "9.0.0",
+    "chai": "^4.2.0",
     "classnames": "^2.2.6",
     "history": "^4.7.2",
     "localStorage": "^1.0.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-file-download": "^0.3.5",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "rrc": "^0.10.1"
+    "rrc": "^0.10.1",
+    "sinon": "^7.2.7"
   },
   "scripts": {
     "start": "concurrently --kill-others \"react-scripts start\" \"npm run prettier-watch\"",
@@ -34,8 +39,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/polyfill": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/preset-react": "^7.0.0-beta.51",
+    "babel-jest": "^23.4.2",
+    "jest": "^23.4.2",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "concurrently": "^4.1.0",
     "cross-fetch": "^3.0.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
     "onchange": "^5.2.0",
     "prettier": "^1.16.4",
     "redux-form": "^8.1.0",
