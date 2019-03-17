@@ -20,24 +20,31 @@ class WizardPageContainer extends React.Component {
     }
   }
 
-  transitionStateMachine(nextProps) {
-    switch (nextProps.wizard.currentState) {
+  transitionStateMachine({
+    wizard,
+    requiresInitialization,
+    initialized,
+    requiresValidation,
+    canTransition,
+    finishedDisposing
+  } = {}) {
+    switch (wizard.currentState) {
       case wizardStates.INITIALIZING: {
-        if (!nextProps.requiresInitialization) {
-          nextProps.initialized();
+        if (!requiresInitialization) {
+          initialized();
         }
         break;
       }
       case wizardStates.PAGE_INITIALIZED: {
-        if (nextProps.requiresValidation) {
-          nextProps.requiresValidation();
+        if (requiresValidation) {
+          requiresValidation();
         } else {
-          nextProps.canTransition();
+          canTransition();
         }
         break;
       }
       case wizardStates.DISPOSING: {
-        nextProps.finishedDisposing();
+        finishedDisposing();
         break;
       }
       default: {

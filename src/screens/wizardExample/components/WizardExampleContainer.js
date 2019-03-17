@@ -27,8 +27,7 @@ class WizardExampleContainer extends Component {
       prevProps.wizard.currentState !== wizardStates.DISPOSING &&
       this.props.wizard.currentState === wizardStates.DISPOSING
     ) {
-      // This is where you can clean up call back references, release
-      // handles, etc...
+      // This is where you can clean up call back references, release handles, etc...
       alert("Wizard is disposing, clean up here...");
     }
 
