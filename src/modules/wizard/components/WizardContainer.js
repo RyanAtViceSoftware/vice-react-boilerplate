@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Wizard from "./Wizard";
 import "./wizard.css";
-import * as selectors from "../wizard.selectors";
+import { getWizardState, wizardStateChangedTo } from "../wizard.selectors";
 import {
   resetWizard,
   doneClicked,
@@ -20,11 +20,8 @@ export class WizardContainer extends Component {
     startWizard(name, pages.length);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.currentState === wizardStates.DONE &&
-      nextProps.currentState !== this.props.currentState
-    ) {
+  componentDidUpdate(prevProps) {
+    if (wizardStateChangedTo(prevProps, this.props, wizardStates.DONE)) {
       this.props.resetWizard();
     }
   }
@@ -64,7 +61,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => {
-  const wizardState = selectors.getWizardState(state);
+  const wizardState = getWizardState(state);
   return {
     ...wizardState,
     isLastPage: wizardState.currentPage === wizardState.numberOfPages - 1 // TODO: Ryan - this should come back as part of wizard state

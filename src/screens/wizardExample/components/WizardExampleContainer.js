@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { reduxForm, Field } from "redux-form";
 import wizard from "../../../modules/wizard";
+import PageWithValidations from "./PageWithValidations";
+import PageWithInitializations from "./PageWithInitializations";
 
 const {
   components: { Wizard, WizardPage },
-  constants: { wizardStates },
-  selectors: { getWizardState }
+  selectors: { getWizardState, wizardIsDisposing, wizardIsDone }
 } = wizard;
 
-const PageOne = ({ passedInData }) => (
+const PageWithProps = ({ passedInData }) => (
   <WizardPage>
     <h1>Page 1 {passedInData}</h1>
   </WizardPage>
@@ -17,24 +18,18 @@ const PageOne = ({ passedInData }) => (
 
 const PageTwo = () => (
   <WizardPage>
-    <h1>Page 2</h1>
+    <h1>Page 4</h1>
   </WizardPage>
 );
 
 class WizardExampleContainer extends Component {
   componentDidUpdate(prevProps) {
-    if (
-      prevProps.wizard.currentState !== wizardStates.DISPOSING &&
-      this.props.wizard.currentState === wizardStates.DISPOSING
-    ) {
+    if (wizardIsDisposing(prevProps, this.props)) {
       // This is where you can clean up call back references, release handles, etc...
       alert("Wizard is disposing, clean up here...");
     }
 
-    if (
-      prevProps.wizard.currentState !== wizardStates.DONE &&
-      this.props.wizard.currentState === wizardStates.DONE
-    ) {
+    if (wizardIsDone(prevProps, this.props)) {
       // Note that if you are using redux forms you will likely not use
       // this block and will instead use redux form's submit handler instead
       alert(
@@ -50,13 +45,21 @@ class WizardExampleContainer extends Component {
         <Wizard
           pages={[
             {
-              component: PageOne,
+              component: PageWithProps,
               props: { passedInData: "Some passed in text" },
-              title: "Step 1: Page 1 Title"
+              title: "Step 1: Page with Props"
+            },
+            {
+              component: PageWithValidations,
+              title: "Step 2: Page Validation Logic"
+            },
+            {
+              component: PageWithInitializations,
+              title: "Step 3: Page with initializations"
             },
             {
               component: PageTwo,
-              title: "Step 2: Page 2 Title"
+              title: "Step 4: Page with initializations"
             }
           ]}
         />

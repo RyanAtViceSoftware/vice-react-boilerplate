@@ -21,16 +21,14 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
     this.tryToValidateForm = this.tryToValidateForm.bind(this);
     this.tryDestroyForm = this.tryDestroyForm.bind(this);
     this.startReduxFormsValidation = this.startReduxFormsValidation.bind(this);
-    this.handleWizardStateMachineTransitions = this.handleWizardStateMachineTransitions.bind(
-      this
-    );
+    this.transitionStateMachine = this.transitionStateMachine.bind(this);
 
     this.state = { validate: false };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.wizard.currentState !== this.props.wizard.currentState) {
-      this.handleWizardStateMachineTransitions(nextProps);
+      this.transitionStateMachine(nextProps);
       return;
     }
 
@@ -68,7 +66,7 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
     }
   }
 
-  handleWizardStateMachineTransitions(nextProps) {
+  transitionStateMachine(nextProps) {
     switch (nextProps.wizard.currentState) {
       case wizardStates.PAGE_INITIALIZED: {
         this.props.pageRequiresValidation();
