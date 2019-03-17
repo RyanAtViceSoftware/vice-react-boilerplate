@@ -16,7 +16,7 @@ const PageWithProps = ({ passedInData }) => (
   </WizardPage>
 );
 
-const PageTwo = () => (
+const SimplePage = () => (
   <WizardPage>
     <h1>Page 4</h1>
   </WizardPage>
@@ -45,20 +45,20 @@ class WizardExampleContainer extends Component {
         <Wizard
           pages={[
             {
+              component: SimplePage,
+              title: "Step 1: Page with initializations"
+            },
+            {
               component: PageWithProps,
               props: { passedInData: "Some passed in text" },
-              title: "Step 1: Page with Props"
+              title: "Step 2: Page with Props"
             },
             {
               component: PageWithValidations,
-              title: "Step 2: Page Validation Logic"
+              title: "Step 3: Page Validation Logic"
             },
             {
               component: PageWithInitializations,
-              title: "Step 3: Page with initializations"
-            },
-            {
-              component: PageTwo,
               title: "Step 4: Page with initializations"
             }
           ]}
