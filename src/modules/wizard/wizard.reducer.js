@@ -169,7 +169,7 @@ function pageInitialized(state, action) {
     case types.CAN_TRANSITION: {
       return {
         ...state,
-        currentState: wizardStates.REQUIRES_VALIDATION
+        currentState: wizardStates.CAN_TRANSITION
       };
     }
     default: {
