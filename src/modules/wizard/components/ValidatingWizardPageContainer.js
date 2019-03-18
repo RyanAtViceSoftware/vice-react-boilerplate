@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import WizardPage from "./WizardPageContainer";
 import * as wizardActions from "../wizard.actions";
@@ -27,9 +27,9 @@ class ValidatingWizardPage extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <WizardPage requiresValidation>{this.props.children}</WizardPage>
-      </Fragment>
+      <WizardPage requiresValidation {...this.props}>
+        {this.props.children}
+      </WizardPage>
     );
   }
 }

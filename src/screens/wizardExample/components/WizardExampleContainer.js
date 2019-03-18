@@ -12,13 +12,13 @@ const {
 
 const PageWithProps = ({ passedInData }) => (
   <WizardPage>
-    <h1>Page 1 {passedInData}</h1>
+    <p>Page 2 {passedInData}</p>
   </WizardPage>
 );
 
 const SimplePage = () => (
   <WizardPage>
-    <h1>Page 4</h1>
+    <p>Page 1</p>
   </WizardPage>
 );
 
@@ -41,7 +41,7 @@ class WizardExampleContainer extends Component {
   render() {
     return (
       <div>
-        <h1>Authenticated Page</h1>
+        <h1>Wizard Example</h1>
         <Wizard
           pages={[
             {

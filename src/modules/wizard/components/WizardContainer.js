@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Wizard from "./Wizard";
-import "./wizard.css";
 import { getWizardState, wizardStateChangedTo } from "../wizard.selectors";
 import {
   resetWizard,

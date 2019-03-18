@@ -34,7 +34,7 @@ class PageWithValidationLogic extends Component {
   render() {
     return (
       <WizardPage requiresInitialization>
-        <h1>Page with Initializations</h1>
+        <p>Page with Initializations</p>
       </WizardPage>
     );
   }

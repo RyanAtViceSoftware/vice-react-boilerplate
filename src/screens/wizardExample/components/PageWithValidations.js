@@ -31,7 +31,7 @@ class PageWithValidationLogic extends Component {
   render() {
     return (
       <ValidatingWizardPage>
-        <h1>Page 2</h1>
+        <p>Page 2</p>
         <button onClick={() => this.setState({ isValid: true })}>
           we are valid
         </button>

@@ -1,14 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import classNames from "classnames";
-import _ from "lodash";
+import "./wizard.css";
 
-const Step = ({ stepNumber, currentStep }) => {
-  const isCurrentOrPastStep = stepNumber <= currentStep;
+const Step = ({ stepNumber, currentStep, page }) => {
+  const isCurrentStep = stepNumber === currentStep;
   return (
-    <div
-      className={classNames("fa", {
-        "fa-circle": isCurrentOrPastStep,
-        "fa-circle-o": !isCurrentOrPastStep
+    <span
+      className={classNames("step", {
+        active: isCurrentStep
       })}
     />
   );
@@ -17,7 +16,7 @@ const Step = ({ stepNumber, currentStep }) => {
 const NextButton = ({ isLastPage, handleDone, handleNext }) => (
   <button
     id="wizard-doneNextButton"
-    className="btn btnDefault"
+    className="nextBtn"
     onClick={e => {
       e.target.blur();
       return isLastPage ? handleDone() : handleNext();
@@ -32,7 +31,7 @@ const BackButton = ({ currentPage, handleBack }) => (
     {!!currentPage && (
       <button
         id="wizard-backButton"
-        className="btn btnSecondary"
+        className="prevBtn"
         onClick={e => {
           e.target.blur();
           handleBack();
@@ -47,40 +46,19 @@ const BackButton = ({ currentPage, handleBack }) => (
 const CancelButton = ({ handleCancel }) => (
   <button
     id="wizard-cancelButton"
-    className="btn btnSecondary"
+    className="prevBtn"
     onClick={() => handleCancel()}
   >
     Cancel
   </button>
 );
 
-const WizardBreadCrub = ({ steps, currentStep }) => (
-  <div className="stepcntnr">
-    <div className="stepper">
-      {_.range(1, 2 * steps.length).map(s => {
-        if (s % 2 === 0) {
-          return <div key={`line${s}`} className="line" />;
-        }
-
-        const stepNumber = s === 1 ? s : Math.ceil(s / 2);
-        return (
-          <Step
-            key={stepNumber}
-            stepNumber={stepNumber}
-            title={steps[stepNumber - 1].title}
-            currentStep={currentStep}
-          />
-        );
-      })}
-    </div>
-    <div className="steps">
-      {steps.map(s => (
-        <div key={s.title} className="steptext">
-          {s.title}
-        </div>
-      ))}
-    </div>
-  </div>
+const WizardBreadCrub = ({ pages, currentStep }) => (
+  <ul className="wizard">
+    {pages.map((page, index) => (
+      <Step stepNumber={index + 1} currentStep={currentStep} page={page} />
+    ))}
+  </ul>
 );
 
 const Wizard = ({
@@ -92,38 +70,41 @@ const Wizard = ({
   handleDone,
   isLastPage
 }) => (
-  <div className="mcontentcntnr">
-    <WizardBreadCrub steps={pages} currentStep={currentPage + 1} />
+  <div>
+    <h3>{pages && pages[currentPage] && pages[currentPage].title}</h3>
     {currentPage >= 0 &&
       React.createElement(pages[currentPage].component, {
         ...pages[currentPage].props
       })}
-    <div className="action">
-      {currentPage >= 0 && pages[currentPage].navigationBarComponent ? (
-        pages[currentPage].navigationBarComponent({
-          nextButton: (
+    <WizardBreadCrub pages={pages} currentStep={currentPage + 1} />
+    <div style={{ overflow: "auto" }}>
+      <div style={{ float: "right" }}>
+        {currentPage >= 0 && pages[currentPage].navigationBarComponent ? (
+          pages[currentPage].navigationBarComponent({
+            nextButton: (
+              <NextButton
+                isLastPage={isLastPage}
+                handleDone={handleDone}
+                handleNext={handleNext}
+              />
+            ),
+            backButton: (
+              <BackButton currentPage={currentPage} handleBack={handleBack} />
+            ),
+            cancelButton: <CancelButton handleCancel={handleCancel} />
+          })
+        ) : (
+          <Fragment>
             <NextButton
               isLastPage={isLastPage}
               handleDone={handleDone}
               handleNext={handleNext}
             />
-          ),
-          backButton: (
             <BackButton currentPage={currentPage} handleBack={handleBack} />
-          ),
-          cancelButton: <CancelButton handleCancel={handleCancel} />
-        })
-      ) : (
-        <div>
-          <NextButton
-            isLastPage={isLastPage}
-            handleDone={handleDone}
-            handleNext={handleNext}
-          />
-          <BackButton currentPage={currentPage} handleBack={handleBack} />
-          <CancelButton handleCancel={handleCancel} />
-        </div>
-      )}
+            <CancelButton handleCancel={handleCancel} />
+          </Fragment>
+        )}
+      </div>
     </div>
   </div>
 );

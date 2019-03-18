@@ -12,6 +12,7 @@ import {
 } from "../wizard.actions";
 import { getWizardState, getForm } from "../wizard.selectors";
 import { wizardStates } from "../wizard.constants";
+import ValidatingWizardPage from "./ValidatingWizardPageContainer";
 
 // Exported for testing
 export class ValidatingReduxFormWizardPageContainer extends React.Component {
@@ -22,8 +23,6 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
     this.tryDestroyForm = this.tryDestroyForm.bind(this);
     this.startReduxFormsValidation = this.startReduxFormsValidation.bind(this);
     this.transitionStateMachine = this.transitionStateMachine.bind(this);
-
-    this.state = { validate: false };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,7 +48,6 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
 
     if (weAreInitializingAndFormInitialChangedAndWeRequireInitialization) {
       this.props.initialized();
-      return;
     }
   }
 
@@ -135,15 +133,11 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
   }
 
   render() {
-    const pageProps = { ...this.props };
-    delete pageProps.component;
-    delete pageProps.formName;
-
-    return React.createElement(this.props.component, {
-      ...pageProps,
-      onInvalidForm: this.onInvalidForm,
-      validate: this.state.validate
-    });
+    return (
+      <ValidatingWizardPage requiresValidation {...this.props}>
+        {this.props.children}
+      </ValidatingWizardPage>
+    );
   }
 }
 
