@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { reduxForm, Field } from "redux-form";
+// import { Field } from "redux-form";
 import wizard from "../../../modules/wizard";
 import PageWithValidations from "./PageWithValidations";
 import PageWithInitializations from "./PageWithInitializations";
 
 const {
-  components: { Wizard, WizardPage },
-  selectors: { getWizardState, wizardIsDisposing, wizardIsDone }
+  components: { WizardPage, Wizard },
+  selectors: { wizardIsDisposing, wizardIsDone, getWizardState }
 } = wizard;
 
 const PageWithProps = ({ passedInData }) => (
@@ -21,6 +21,14 @@ const SimplePage = () => (
     <p>Page 1</p>
   </WizardPage>
 );
+
+// const required = value => value;
+
+// const PageWithReduxFormsValidations = () => (
+//   <form name="wizardForm">
+//     <Field component={text} name="test" validations={[required]} />
+//   </form>
+// );
 
 class WizardExampleContainer extends Component {
   componentDidUpdate(prevProps) {
@@ -46,7 +54,7 @@ class WizardExampleContainer extends Component {
           pages={[
             {
               component: SimplePage,
-              title: "Step 1: Page with initializations"
+              title: "Step 1: Simple page"
             },
             {
               component: PageWithProps,
