@@ -56,7 +56,12 @@ const CancelButton = ({ handleCancel }) => (
 const WizardBreadCrub = ({ pages, currentStep }) => (
   <ul className="wizard">
     {pages.map((page, index) => (
-      <Step stepNumber={index + 1} currentStep={currentStep} page={page} />
+      <Step
+        key={index}
+        stepNumber={index + 1}
+        currentStep={currentStep}
+        page={page}
+      />
     ))}
   </ul>
 );
