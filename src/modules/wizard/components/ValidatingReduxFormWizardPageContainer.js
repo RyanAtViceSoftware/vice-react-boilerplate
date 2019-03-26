@@ -66,14 +66,9 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
 
   transitionStateMachine(nextProps) {
     switch (nextProps.wizard.currentState) {
-      case wizardStates.PAGE_INITIALIZED: {
-        this.props.pageRequiresValidation();
-        break;
-      }
       case wizardStates.DONE_REQUESTED:
       case wizardStates.VALIDATION_REQUESTED: {
         this.startReduxFormsValidation();
-        this.props.validating();
         break;
       }
       case wizardStates.VALIDATING:
@@ -83,7 +78,6 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
       }
       case wizardStates.DISPOSING: {
         this.tryDestroyForm();
-        this.props.finishedDisposing();
         break;
       }
       default: {
@@ -134,7 +128,7 @@ export class ValidatingReduxFormWizardPageContainer extends React.Component {
 
   render() {
     return (
-      <ValidatingWizardPage requiresValidation {...this.props}>
+      <ValidatingWizardPage {...this.props}>
         {this.props.children}
       </ValidatingWizardPage>
     );

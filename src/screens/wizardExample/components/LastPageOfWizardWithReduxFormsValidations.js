@@ -1,72 +1,66 @@
 import React from "react";
-import { reduxForm, Field } from "redux-form";
-import classNames from "classnames";
+import { Field, SubmissionError } from "redux-form";
+import { connect } from "react-redux";
 import "./wizardExample.css";
 import wizard from "../../../modules/wizard";
+import forms from "../../../modules/forms";
 
 const {
-  components: { ValidatingReduxFormWizardPage }
+  components: { ValidatingInputField },
+  validators: { required }
+} = forms;
+
+const {
+  components: { WithReduxFormWizardPageValidation }
 } = wizard;
 
-const required = value => {
-  return (!isNaN(value) && +value) || (isNaN(value) && value !== undefined)
-    ? undefined
-    : "Required";
-};
-
-const ValidatingInputField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error, warning }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input
-        className={classNames({ error: touched && error })}
-        {...input}
-        placeholder={label}
-        type={type}
-      />
-      {touched &&
-        ((error && <span className="error">{error}</span>) ||
-          (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-);
-
 let PageWithReduxFormsValidations = ({ onSubmit, handleSubmit, ...rest }) => (
-  <ValidatingReduxFormWizardPage {...rest}>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Field
-        component={ValidatingInputField}
-        type="number"
-        name="requiredNumber"
-        validate={[required]}
-        label="Required Number"
-      />
-    </form>
-  </ValidatingReduxFormWizardPage>
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <Field
+      component={ValidatingInputField}
+      type="number"
+      name="requiredNumber"
+      validate={[required]}
+      label="Required Number"
+    />
+  </form>
 );
 
-PageWithReduxFormsValidations = reduxForm({
-  form: "PageWithReduxFormsValidations"
-})(PageWithReduxFormsValidations);
+PageWithReduxFormsValidations = WithReduxFormWizardPageValidation(
+  PageWithReduxFormsValidations,
+  {
+    formName: "PageWithReduxFormsValidations",
+    isLastPage: true
+  }
+);
 
-export default class PageWithReduxFormsValidationsContainer extends React.Component {
-  handleSubmit(values) {
+class PageWithReduxFormsValidationsContainer extends React.Component {
+  handleSubmit = values => {
+    if (
+      values.requiredText &&
+      values.requiredText.toLowerCase() === "servererror"
+    ) {
+      const errors = {
+        requiredText: "A fake server error occurred. Please try again."
+      };
+
+      const addEditPromoDetailsPage = 4;
+      this.props.pageNotValid(addEditPromoDetailsPage);
+
+      throw new SubmissionError(errors);
+    }
+
     alert(`Submit succeeded with values: ${JSON.stringify(values)}`);
 
     return Promise.resolve("Success!");
-  }
+  };
 
   render() {
-    return (
-      <PageWithReduxFormsValidations
-        onSubmit={this.handleSubmit}
-        {...this.props}
-      />
-    );
+    return <PageWithReduxFormsValidations onSubmit={this.handleSubmit} />;
   }
 }
+
+export default connect(
+  null,
+  { pageNotValid: wizard.actions.pageNotValid }
+)(PageWithReduxFormsValidationsContainer);
