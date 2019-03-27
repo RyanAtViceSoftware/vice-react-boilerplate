@@ -1,8 +1,8 @@
 import React from "react";
 import { Field } from "redux-form";
-import "./wizardExample.css";
-import wizard from "../../../modules/wizard";
-import forms from "../../../modules/forms";
+import "../wizardExample.css";
+import wizard from "../../../../modules/wizard";
+import forms from "../../../../modules/forms";
 
 const {
   components: { ValidatingInputField },

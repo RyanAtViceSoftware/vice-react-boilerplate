@@ -1,9 +1,9 @@
 import React from "react";
 import { Field, SubmissionError } from "redux-form";
 import { connect } from "react-redux";
-import "./wizardExample.css";
-import wizard from "../../../modules/wizard";
-import forms from "../../../modules/forms";
+import "../wizardExample.css";
+import wizard from "../../../../modules/wizard";
+import forms from "../../../../modules/forms";
 
 const {
   components: { ValidatingInputField },

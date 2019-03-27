@@ -1,27 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import wizard from "../../../modules/wizard";
-import PageWithValidations from "./PageWithValidations";
-import PageWithInitializations from "./PageWithInitializations";
-import PageWithReduxFormsValidations from "./PageWithReduxFormsValidations";
-import LastPageOfWizardWithReduxFormsValidations from "./LastPageOfWizardWithReduxFormsValidations";
+import PageWithValidations from "./samplePages/PageWithValidations";
+import PageWithInitializations from "./samplePages/PageWithInitializations";
+import PageWithReduxFormsValidations from "./samplePages/PageWithReduxFormsValidations";
+import LastPageOfWizardWithReduxFormsValidations from "./samplePages/LastPageOfWizardWithReduxFormsValidations";
+import Markdown from "./samplePages/Markdown";
+import PageWithProps from "./samplePages/PageWithProps";
+import SimplePage from "./samplePages/SimplePage";
 
 const {
   components: { WizardPage, Wizard },
   selectors: { wizardIsDisposing, wizardIsDone, getWizardState }
 } = wizard;
-
-const PageWithProps = ({ passedInData }) => (
-  <WizardPage>
-    <p>Page 2 {passedInData}</p>
-  </WizardPage>
-);
-
-const SimplePage = () => (
-  <WizardPage>
-    <p>Page 1</p>
-  </WizardPage>
-);
 
 class WizardExampleContainer extends Component {
   componentDidUpdate(prevProps) {
@@ -41,7 +32,7 @@ class WizardExampleContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wizard-container">
         <h1>Wizard Example</h1>
         <Wizard
           pages={[

@@ -16,7 +16,7 @@ const Step = ({ stepNumber, currentStep, page }) => {
 const NextButton = ({ isLastPage, handleDone, handleNext }) => (
   <button
     id="wizard-doneNextButton"
-    className="nextBtn"
+    className="button nextBtn"
     onClick={e => {
       e.target.blur();
       return isLastPage ? handleDone() : handleNext();
@@ -31,7 +31,7 @@ const BackButton = ({ currentPage, handleBack }) => (
     {!!currentPage && (
       <button
         id="wizard-backButton"
-        className="prevBtn"
+        className="button prevBtn"
         onClick={e => {
           e.target.blur();
           handleBack();
@@ -46,7 +46,7 @@ const BackButton = ({ currentPage, handleBack }) => (
 const CancelButton = ({ handleCancel }) => (
   <button
     id="wizard-cancelButton"
-    className="prevBtn"
+    className="button prevBtn"
     onClick={() => handleCancel()}
   >
     Cancel
@@ -83,7 +83,7 @@ const Wizard = ({
       })}
     <WizardBreadCrub pages={pages} currentStep={currentPage + 1} />
     <div style={{ overflow: "auto" }}>
-      <div style={{ float: "right" }}>
+      <div>
         {currentPage >= 0 && pages[currentPage].navigationBarComponent ? (
           pages[currentPage].navigationBarComponent({
             nextButton: (
@@ -100,13 +100,13 @@ const Wizard = ({
           })
         ) : (
           <Fragment>
+            <CancelButton handleCancel={handleCancel} />
+            <BackButton currentPage={currentPage} handleBack={handleBack} />
             <NextButton
               isLastPage={isLastPage}
               handleDone={handleDone}
               handleNext={handleNext}
             />
-            <BackButton currentPage={currentPage} handleBack={handleBack} />
-            <CancelButton handleCancel={handleCancel} />
           </Fragment>
         )}
       </div>

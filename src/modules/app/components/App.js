@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Router, Route, Link } from "react-router-dom";
-// import { ConnectedRouter } from "react-router-redux";
+import { Router, Route } from "react-router-dom";
 import { OnUpdate } from "rrc";
 import userContext from "../../userContext";
 import home from "../../../screens/home";
@@ -11,16 +10,25 @@ import authenticated from "../../../screens/authenticated";
 import wizardExample from "../../../screens/wizardExample";
 import busyIndicator from "../../busyIndicator";
 import notificationPopup from "../../notificationPopup";
+import "./app.css";
+import navBar from "../../navBar";
 
-const { getUserContext } = userContext.selectors;
 const { BusyIndicator } = busyIndicator.components;
 const { Home } = home.components;
 const { SignIn } = signin.components;
 const { Protected } = protectedRoute.components;
 const { Authenticated } = authenticated.components;
 const { WizardExample } = wizardExample.components;
-const { isBusy } = busyIndicator.selectors;
 const { NotificationPopup } = notificationPopup.components;
+const {
+  selectors: { getUserContext }
+} = userContext;
+const {
+  selectors: { isBusy }
+} = busyIndicator;
+const {
+  components: { NavBar, MenuItem }
+} = navBar;
 
 class App extends Component {
   render() {
@@ -29,25 +37,13 @@ class App extends Component {
     return (
       <Router history={history}>
         <div>
-          <header>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/authenticated">Authenticated</Link>
-              </li>
-              <li>
-                <Link to="/protected">Protected</Link>
-              </li>
-              <li>
-                <Link to="/wizard-example">Wizard Example</Link>
-              </li>
-              <li>
-                <Link to="/sign-in">Sign In</Link>
-              </li>
-            </ul>
-          </header>
+          <NavBar>
+            <MenuItem to="/">Home</MenuItem>
+            <MenuItem to="/authenticated">Authenticated</MenuItem>
+            <MenuItem to="/protected">Protected</MenuItem>
+            <MenuItem to="/wizard-example">Wizard Example</MenuItem>
+            <MenuItem to="/sign-in">Sign In</MenuItem>
+          </NavBar>
           <div className="App-intro">
             <NotificationPopup />
             {isBusy ? (

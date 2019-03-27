@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import createHistory from "history/createBrowserHistory";
 import "./index.css";
 import rootReducer from "./modules/rootReducer";
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 import { createStore } from "./modules/store";
 import app from "./modules/app";
 
