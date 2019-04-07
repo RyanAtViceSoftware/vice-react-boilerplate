@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import createHistory from "history/createBrowserHistory";
 import "./index.css";
 import rootReducer from "./modules/rootReducer";
-import registerServiceWorker from "./registerServiceWorker";
+import * as serviceWorker from "./serviceWorker";
 import { createStore } from "./modules/store";
 import app from "./modules/app";
 
@@ -21,4 +21,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-registerServiceWorker();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();

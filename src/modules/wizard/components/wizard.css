@@ -1,0 +1,51 @@
+﻿.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    float: left;
+}
+
+.nextBtn {
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+    color: white;
+}
+
+.nextBtn:hover {
+    background-color: white;
+    color: black;
+}
+
+.prevBtn {
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+}
+
+.prevBtn:hover {
+ background-color: #e7e7e7;
+}
