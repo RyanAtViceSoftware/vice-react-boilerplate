@@ -15,7 +15,6 @@ import { wizardStates } from "../wizard.constants";
 export class WizardContainer extends Component {
   componentDidMount() {
     const { pages, startWizard, name } = this.props;
-
     startWizard(name, pages.length);
   }
 
@@ -36,6 +35,17 @@ export class WizardContainer extends Component {
       nextClicked
     } = this.props;
 
+    let pagesWithReduxForm = [];
+    if (pages) {
+      pagesWithReduxForm = pages.reduce((acc, field, index) => {
+        if (field.props && field.props.formName) {
+          field.index = index;
+          acc.push(field);
+        }
+        return acc;
+      }, []);
+    }
+
     return (
       <Wizard
         pages={pages}
@@ -45,6 +55,7 @@ export class WizardContainer extends Component {
         handleCancel={cancelClicked}
         handleNext={nextClicked}
         isLastPage={isLastPage}
+        pagesWithReduxForm={pagesWithReduxForm}
       />
     );
   }

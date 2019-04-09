@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import classNames from "classnames";
 import "./wizard.css";
+import PagesWithReduxForm from "./PagesWithReduxForm";
 
 const Step = ({ stepNumber, currentStep, page }) => {
   const isCurrentStep = stepNumber === currentStep;
@@ -78,9 +79,20 @@ const Wizard = ({
   <div>
     <h3>{pages && pages[currentPage] && pages[currentPage].title}</h3>
     {currentPage >= 0 &&
+    pages[currentPage].hasOwnProperty("props") &&
+    pages[currentPage].props.hasOwnProperty("formName") ? (
+      <PagesWithReduxForm
+        currentPage={pages[currentPage]}
+        pagesCount={pages.length}
+        currentPageIndex={currentPage}
+      />
+    ) : (
+      currentPage >= 0 &&
       React.createElement(pages[currentPage].component, {
         ...pages[currentPage].props
-      })}
+      })
+    )}
+
     <WizardBreadCrub pages={pages} currentStep={currentPage + 1} />
     <div style={{ overflow: "auto" }}>
       <div>

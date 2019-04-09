@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { SubmissionError } from "redux-form";
 import wizard from "../../../modules/wizard";
 import PageWithValidations from "./samplePages/PageWithValidations";
 import PageWithInitializations from "./samplePages/PageWithInitializations";
@@ -30,6 +31,26 @@ class WizardExampleContainer extends Component {
     }
   }
 
+  handleSubmit = values => {
+    if (
+      values.requiredText &&
+      values.requiredText.toLowerCase() === "servererror"
+    ) {
+      const errors = {
+        requiredText: "A fake server error occurred. Please try again."
+      };
+
+      const addEditPromoDetailsPage = 4;
+      this.props.pageNotValid(addEditPromoDetailsPage);
+
+      throw new SubmissionError(errors);
+    }
+
+    alert(`Submit succeeded with values: ${JSON.stringify(values)}`);
+
+    return Promise.resolve("Success!");
+  };
+
   render() {
     return (
       <div className="wizard-container">
@@ -58,10 +79,14 @@ class WizardExampleContainer extends Component {
               title: "Step 5: Page with redux forms validations",
               props: { formName: "PageWithReduxFormsValidations" }
             },
+
             {
               component: LastPageOfWizardWithReduxFormsValidations,
               title: "Step 6: Last page with redux forms validations",
-              props: { formName: "PageWithReduxFormsValidations" }
+              props: {
+                formName: "PageWithReduxFormsValidations",
+                onSubmit: this.handleSubmit
+              }
             }
           ]}
           formName="PageWithReduxFormsValidations"
@@ -75,4 +100,7 @@ const mapStateToProps = state => ({
   wizard: getWizardState(state)
 });
 
-export default connect(mapStateToProps)(WizardExampleContainer);
+export default connect(
+  mapStateToProps,
+  { pageNotValid: wizard.actions.pageNotValid }
+)(WizardExampleContainer);
