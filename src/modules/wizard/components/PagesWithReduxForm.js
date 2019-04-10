@@ -1,7 +1,7 @@
 import React from "react";
 import WithReduxFormWizardPageValidation from "./WithReduxFormWizardPageValidation";
 
-const PageWithReduxForm = ({
+const PagesWithReduxForm = ({
   handleSubmit,
   currentPageIndex,
   pagesCount,
@@ -20,6 +20,11 @@ const PageWithReduxForm = ({
   );
 };
 
-export default WithReduxFormWizardPageValidation(PageWithReduxForm, {
-  formName: "PageWithReduxFormsValidations"
+export default WithReduxFormWizardPageValidation(PagesWithReduxForm, props => {
+  return {
+    isLastPage:
+      props && props.currentPageIndex + 1 === props.pagesCount ? true : false,
+    formName: "PageWithReduxFormsValidations",
+    requiresInitialization: false
+  };
 });
