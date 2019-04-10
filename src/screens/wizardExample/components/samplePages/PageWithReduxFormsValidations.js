@@ -1,7 +1,6 @@
 import React from "react";
 import { Field } from "redux-form";
 import "../wizardExample.css";
-import wizard from "../../../../modules/wizard";
 import forms from "../../../../modules/forms";
 
 const {
@@ -9,23 +8,14 @@ const {
   validators: { required }
 } = forms;
 
-const {
-  components: { WithReduxFormWizardPageValidation }
-} = wizard;
-
-const PageWithReduxFormsValidations = props => (
-  <form onSubmit={props.handleSubmit}>
-    <Field
-      component={ValidatingInputField}
-      type="text"
-      name="requiredText"
-      validate={[required]}
-      label="Required Text"
-    />
-  </form>
+const PageWithReduxFormsValidations = () => (
+  <Field
+    component={ValidatingInputField}
+    type="text"
+    name="requiredText"
+    validate={[required]}
+    label="Required Text"
+  />
 );
 
-export default WithReduxFormWizardPageValidation(
-  PageWithReduxFormsValidations,
-  { formName: "PageWithReduxFormsValidations" }
-);
+export default PageWithReduxFormsValidations;
