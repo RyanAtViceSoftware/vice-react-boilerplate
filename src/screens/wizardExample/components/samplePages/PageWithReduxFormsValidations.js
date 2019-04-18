@@ -34,7 +34,7 @@ export default WithReduxFormWizardPageValidation(
 
 function getDocs() {
   return `
-To add a page that isn't the last page that uses \`redux-form\`s validations we add a form using the pattern below:
+To add a page that **isn't the last page** that uses \`redux-form\`s validations we add a form using the pattern below:
 
 \`\`\`js
 const PageWithReduxFormsValidations = props => (
@@ -52,5 +52,7 @@ const PageWithReduxFormsValidations = props => (
 
 Note that \`props.handleSubmit\` will be passed to us by the wizard and will handle advanced
 scenarios like navigating to pages when server side errors occur.
+
+Setting Required Text to \`servererror\` will simulate throwing a server side error.
 `;
 }
