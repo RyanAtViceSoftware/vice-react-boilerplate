@@ -25,12 +25,19 @@ export class WizardContainer extends Component {
     }
   }
 
+  onDoneClicked = () => {
+    this.props.doneClicked();
+
+    if (this.props.onDone) {
+      this.props.onDone();
+    }
+  };
+
   render() {
     const {
       pages,
       currentPage,
       isLastPage,
-      doneClicked,
       backClicked,
       cancelClicked,
       nextClicked
@@ -41,7 +48,7 @@ export class WizardContainer extends Component {
         pages={pages}
         currentPage={currentPage}
         handleBack={backClicked}
-        handleDone={doneClicked}
+        handleDone={this.onDoneClicked}
         handleCancel={cancelClicked}
         handleNext={nextClicked}
         isLastPage={isLastPage}

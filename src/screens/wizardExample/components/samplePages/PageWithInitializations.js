@@ -4,12 +4,8 @@ import wizard from "../../../../modules/wizard";
 import Documetation from "./Documentation";
 
 const {
-  constants: { wizardStates }
-} = wizard;
-
-const {
   components: { WizardPage },
-  selectors: { getWizardState }
+  selectors: { isInitializationRequested }
 } = wizard;
 
 class PageWithValidationLogic extends Component {
@@ -18,20 +14,24 @@ class PageWithValidationLogic extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState({ isInitialized: true }), 500);
+    if (this.props.intializationRequested) {
+      alert(
+        "Here we can check to see if the wizard expecting us to " +
+          "do async initialization and then we can fire our async code. " +
+          "The next button won't be enabled, preventing the user from proceeding " +
+          " and preventing validations from firing, until we let the wizard " +
+          "know we are initialized by calling the initalized() action creator."
+      );
+
+      setTimeout(() => this.setState({ isInitialized: true }), 5000);
+    }
   }
 
   componentDidUpdate(_, prevState) {
-    if (this.props.wizard.currentState === wizardStates.INITIALIZING) {
-      alert("Here we can check to see if we are don initializing");
-
-      if (!prevState.isInitialized && this.state.isInitialized) {
-        alert("We are initialized");
-        // We call the initialized action to let the wizard know we are initialized
-        this.props.initialized();
-      } else {
-        alert("We aren't initialized yet");
-      }
+    if (!prevState.isInitialized && this.state.isInitialized) {
+      alert("We are initialized");
+      // We call the initialized action to let the wizard know we are initialized
+      this.props.initialized();
     }
   }
 
@@ -45,7 +45,7 @@ class PageWithValidationLogic extends Component {
 }
 
 const mapStateToProps = state => ({
-  wizard: getWizardState(state)
+  intializationRequested: isInitializationRequested(state)
 });
 
 const mapDispatchToProps = {
@@ -80,17 +80,25 @@ We then configure our page to require initialization by setting the \`requiresIn
 We can then follow the pattern shown below to fire our initialization logic in \`componentDidUpdate\`.
 
 \`\`\`js
-  componentDidUpdate(_, prevState) {
-    if (this.props.wizard.currentState === wizardStates.INITIALIZING) {
-      alert("Here we can check to see if we are don initializing");
+  componentDidMount() {
+    if (this.props.intializationRequested) {
+      alert(
+        "Here we can check to see if the wizard expecting us to " +
+          "do async initialization and then we can fire our async code. " +
+          "The next button won't be enabled, preventing the user from proceeding " +
+          " and preventing validations from firing, until we let the wizard " +
+          "know we are initialized by calling the initalized() action creator."
+      );
 
-      if (!prevState.isInitialized && this.state.isInitialized) {
-        alert("We are initialized");
-        // We call the initialized action to let the wizard know we are initialized
-        this.props.initialized();
-      } else {
-        alert("We aren't initialized yet");
-      }
+      setTimeout(() => this.setState({ isInitialized: true }), 5000);
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (!prevState.isInitialized && this.state.isInitialized) {
+      alert("We are initialized");
+      // We call the initialized action to let the wizard know we are initialized
+      this.props.initialized();
     }
   }
 \`\`\`

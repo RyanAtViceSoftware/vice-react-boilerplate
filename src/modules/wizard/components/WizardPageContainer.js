@@ -15,7 +15,7 @@ class WizardPageContainer extends React.Component {
     }
   }
 
-  transitionStateMachine({
+  transitionStateMachine = ({
     wizard,
     requiresInitialization,
     initialized,
@@ -23,7 +23,7 @@ class WizardPageContainer extends React.Component {
     pageRequiresValidation,
     canTransition,
     finishedDisposing
-  } = {}) {
+  } = {}) => {
     switch (wizard.currentState) {
       case wizardStates.INITIALIZING: {
         if (!requiresInitialization) {
@@ -47,7 +47,7 @@ class WizardPageContainer extends React.Component {
         break;
       }
     }
-  }
+  };
 
   render() {
     return <Fragment>{this.props.children}</Fragment>;

@@ -23,3 +23,6 @@ export const wizardStateChanged = (prevProps, props) =>
 export const validationRequested = (prevProps, props) =>
   wizardStateChangedTo(prevProps, props, wizardStates.VALIDATING) ||
   wizardStateChangedTo(prevProps, props, wizardStates.VALIDATING_DONE);
+
+export const isInitializationRequested = state =>
+  getWizardState(state).currentState === wizardStates.INITIALIZING;
