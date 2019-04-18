@@ -11,12 +11,19 @@ import {
   startWizard
 } from "../wizard.actions";
 import { wizardStates } from "../wizard.constants";
+import WithWrappedReduxFormsWizardPage from "./WithWrappedReduxFormsWizardPage";
 
 export class WizardContainer extends Component {
-  componentDidMount() {
-    const { pages, startWizard, name } = this.props;
+  state = {
+    pages: []
+  };
 
-    startWizard(name, pages.length);
+  componentDidMount() {
+    const { startWizard, name } = this.props;
+
+    this.setState({ pages: this.props.pages.map(this.decoratePage) });
+
+    startWizard(name, this.state.pages.length);
   }
 
   componentDidUpdate(prevProps) {
@@ -25,9 +32,34 @@ export class WizardContainer extends Component {
     }
   }
 
+  decoratePage = (page, index) => {
+    if (!page.formName) {
+      return page;
+    }
+
+    const isLastPage = this.props.pages.length === index - 1;
+
+    if (isLastPage) {
+      return {
+        ...page,
+        component: WithWrappedReduxFormsWizardPage(page.component, {
+          formName: page.formName,
+          isLastPage
+        })
+      };
+    }
+
+    return {
+      ...page,
+      component: WithWrappedReduxFormsWizardPage(page.component, {
+        formName: page.formName,
+        isLastPage
+      })
+    };
+  };
+
   render() {
     const {
-      pages,
       currentPage,
       isLastPage,
       doneClicked,
@@ -35,6 +67,8 @@ export class WizardContainer extends Component {
       cancelClicked,
       nextClicked
     } = this.props;
+
+    const { pages } = this.state;
 
     return (
       <Wizard

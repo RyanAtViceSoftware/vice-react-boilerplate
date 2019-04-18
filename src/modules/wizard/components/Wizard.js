@@ -78,13 +78,16 @@ const Wizard = ({
   <div>
     <h3>{pages && pages[currentPage] && pages[currentPage].title}</h3>
     {currentPage >= 0 &&
+      pages[currentPage] &&
       React.createElement(pages[currentPage].component, {
         ...pages[currentPage].props
       })}
     <WizardBreadCrub pages={pages} currentStep={currentPage + 1} />
     <div style={{ overflow: "auto" }}>
       <div>
-        {currentPage >= 0 && pages[currentPage].navigationBarComponent ? (
+        {currentPage >= 0 &&
+        pages[currentPage] &&
+        pages[currentPage].navigationBarComponent ? (
           pages[currentPage].navigationBarComponent({
             nextButton: (
               <NextButton

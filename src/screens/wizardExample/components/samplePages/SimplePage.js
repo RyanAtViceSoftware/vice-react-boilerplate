@@ -3,8 +3,7 @@ import Documentation from "./Documentation";
 import wizard from "../../../../modules/wizard";
 
 const {
-  components: { WizardPage },
-  constants: { wizardStates }
+  components: { WizardPage }
 } = wizard;
 
 const simplePageMarkDown =

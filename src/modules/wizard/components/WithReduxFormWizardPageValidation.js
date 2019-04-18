@@ -1,7 +1,7 @@
 import React from "react";
-import ValidatingReduxFormWizardPageContainer from "./ValidatingReduxFormWizardPageContainer";
 import { reduxForm, SubmissionError } from "redux-form";
 import _ from "lodash";
+import ValidatingReduxFormWizardPageContainer from "./ValidatingReduxFormWizardPageContainer";
 import { getWizardErrors } from "../wizard.selectors";
 import { getState } from "../../store";
 

@@ -5,12 +5,11 @@ import PageWithValidations from "./samplePages/PageWithValidations";
 import PageWithInitializations from "./samplePages/PageWithInitializations";
 import PageWithReduxFormsValidations from "./samplePages/PageWithReduxFormsValidations";
 import LastPageOfWizardWithReduxFormsValidations from "./samplePages/LastPageOfWizardWithReduxFormsValidations";
-import Markdown from "./samplePages/Markdown";
 import PageWithProps from "./samplePages/PageWithProps";
 import SimplePage from "./samplePages/SimplePage";
 
 const {
-  components: { WizardPage, Wizard },
+  components: { Wizard },
   selectors: { wizardIsDisposing, wizardIsDone, getWizardState }
 } = wizard;
 
@@ -56,12 +55,12 @@ class WizardExampleContainer extends Component {
             {
               component: PageWithReduxFormsValidations,
               title: "Step 5: Page with redux forms validations",
-              props: { formName: "PageWithReduxFormsValidations" }
+              formName: "PageWithReduxFormsValidations"
             },
             {
               component: LastPageOfWizardWithReduxFormsValidations,
               title: "Step 6: Last page with redux forms validations",
-              props: { formName: "PageWithReduxFormsValidations" }
+              formName: "PageWithReduxFormsValidations"
             }
           ]}
           formName="PageWithReduxFormsValidations"

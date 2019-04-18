@@ -10,28 +10,14 @@ const {
   validators: { required }
 } = forms;
 
-const {
-  components: { WithReduxFormWizardPageValidation }
-} = wizard;
-
-let PageWithReduxFormsValidations = ({ onSubmit, handleSubmit, ...rest }) => (
-  <form onSubmit={handleSubmit(onSubmit)}>
-    <Field
-      component={ValidatingInputField}
-      type="number"
-      name="requiredNumber"
-      validate={[required]}
-      label="Required Number"
-    />
-  </form>
-);
-
-PageWithReduxFormsValidations = WithReduxFormWizardPageValidation(
-  PageWithReduxFormsValidations,
-  {
-    formName: "PageWithReduxFormsValidations",
-    isLastPage: true
-  }
+const PageWithReduxFormsValidations = () => (
+  <Field
+    component={ValidatingInputField}
+    type="number"
+    name="requiredNumber"
+    validate={[required]}
+    label="Required Number"
+  />
 );
 
 class PageWithReduxFormsValidationsContainer extends React.Component {
